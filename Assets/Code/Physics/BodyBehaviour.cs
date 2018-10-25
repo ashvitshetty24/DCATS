@@ -51,7 +51,37 @@ namespace DCATS.Assets.Physics
 			}
 		}
 
-		public Vector3 ConstantForce { get; set; }
+		private ConstantForce constantForceComponent = null;
+		public Vector3 ConstantForce
+		{
+			get
+			{
+				if (constantForceComponent == null)
+				{
+					constantForceComponent = GetComponent<ConstantForce>();
+					if (constantForceComponent == null)
+					{
+						constantForceComponent = gameObject.AddComponent<ConstantForce>();
+					}
+				}
+
+				return constantForceComponent.force;
+			}
+
+			set
+			{
+				if (constantForceComponent == null)
+				{
+					constantForceComponent = GetComponent<ConstantForce>();
+					if (constantForceComponent == null)
+					{
+						constantForceComponent = gameObject.AddComponent<ConstantForce>();
+					}
+				}
+
+				constantForceComponent.force = value;
+			}
+		}
 
 
 
@@ -60,7 +90,7 @@ namespace DCATS.Assets.Physics
 
 		public BodyBehaviour()
 		{
-			ConstantForce = new Vector3(0, 0, 0);
+			//ConstantForce = new Vector3(0, 0, 0);
 		}
 
 
@@ -72,7 +102,7 @@ namespace DCATS.Assets.Physics
 		public void Update()
 		{
 			// Add code here
-			Body.AddForce(ConstantForce);
+			//Body.AddForce(ConstantForce);
 
 
 
