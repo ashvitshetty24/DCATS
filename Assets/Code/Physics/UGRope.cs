@@ -44,7 +44,7 @@ namespace DCATS.Assets.Physics
         private const float DefaultSpringConstant = 20.0f;
 
         #endregion
-        private UltimateRope URope;
+        private Wrapped.UltimateRope URope;
 
         [ExposeProperty]
         public GameObject Object1
@@ -315,7 +315,7 @@ namespace DCATS.Assets.Physics
         {
             base.Init();
 
-            URope = this.gameObject.AddComponent<UltimateRope>();
+            URope = this.gameObject.AddComponent<Wrapped.UltimateRope>();
             Debug.Assert(URope != null);
 
             if (_RopeMaterial != null)
@@ -329,16 +329,16 @@ namespace DCATS.Assets.Physics
 
 
 
-            URope.RopeType = UltimateRope.ERopeType.Procedural;
+            URope.RopeType = Wrapped.UltimateRope.ERopeType.Procedural;
             //rope.IsExtensible = true;
             URope.RopeStart = Object1;
             if (URope.RopeNodes == null)
             {
-                URope.RopeNodes = new List<UltimateRope.RopeNode>();
+                URope.RopeNodes = new List<Wrapped.UltimateRope.RopeNode>();
             }
 
 
-            var new_node = new UltimateRope.RopeNode();
+            var new_node = new Wrapped.UltimateRope.RopeNode();
             URope.RopeNodes.Add(new_node);
 
 
@@ -363,7 +363,7 @@ namespace DCATS.Assets.Physics
             }
 
 
-            new_node.eColliderType = UltimateRope.EColliderType.Capsule;
+            new_node.eColliderType = Wrapped.UltimateRope.EColliderType.Capsule;
             new_node.nColliderSkip = 3;
             URope.TotalLinks = new_node.nNumLinks;
 
@@ -427,7 +427,7 @@ namespace DCATS.Assets.Physics
             }
         }
 
-        private UltimateRope.RopeNode GetNode(int n)
+        private Wrapped.UltimateRope.RopeNode GetNode(int n)
         {
             if (URope != null)
             {
@@ -442,7 +442,7 @@ namespace DCATS.Assets.Physics
             return null;
         }
 
-        protected UltimateRope.RopeNode Node()
+        protected Wrapped.UltimateRope.RopeNode Node()
         {
             return GetNode(0);
         }
