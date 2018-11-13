@@ -1,0 +1,3 @@
+[submodule "Assets/MixedRealityToolkit-Unity-master"]
+	path = Assets/MixedRealityToolkit-Unity-master
+	url = https://github.com/Microsoft/MixedRealityToolkit-Unity.git
