@@ -739,6 +739,8 @@ namespace DCATS.Assets.Physics
                 return false;
             }
 
+			_ColliderSkip = 3;
+
             var node = Node();
             if (node != null)
             {
@@ -746,6 +748,7 @@ namespace DCATS.Assets.Physics
                 if (node.nColliderSkip != _ColliderSkip)
                 {
                     node.nColliderSkip = _ColliderSkip;
+
                     return true;
                 }
             }
