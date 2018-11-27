@@ -11,8 +11,7 @@ namespace DCATS.Assets.Tools
     {
         #region PropertyBackings
 
-        GameObject _tipPoint = null;
-        Grabber _tipGrabber = null;
+        ScrewdriverGrabber _tipGrabber = null;
 
         #endregion
 
@@ -23,22 +22,27 @@ namespace DCATS.Assets.Tools
         [SerializeField]
         public float CutoffDistance = 0.5f;
 
-        protected GameObject AttachedScrew = null;
+        [SerializeField]
+        public Transform Tip;
 
-        protected Transform TipTransform
+        protected GameObject TipObject
         {
             get
             {
-                if (_tipPoint == null)
+                if (Tip != null)
                 {
-                    SetupTip();
+                    return Tip.gameObject;
                 }
-
-                return _tipPoint.transform;
+                else
+                {
+                    return null;
+                }
             }
         }
 
-        protected Grabber TipGrabber
+        protected GameObject AttachedScrew = null;
+
+        protected ScrewdriverGrabber TipGrabber
         {
             get
             {
@@ -52,11 +56,14 @@ namespace DCATS.Assets.Tools
 
         private void SetupTip()
         {
-            _tipPoint = this.gameObject.transform.Find("TipPoint").gameObject;
-            var tipGrabber = _tipPoint.GetComponent<Grabber>();
+            var tipGrabber = TipObject.GetComponent<ScrewdriverGrabber>();
             if (tipGrabber == null)
             {
-                tipGrabber = _tipPoint.AddComponent<Grabber>();
+                var screwGrabber = TipObject.AddComponent<ScrewdriverGrabber>();
+
+                
+
+                tipGrabber = screwGrabber;
             }
             this._tipGrabber = tipGrabber;
         }
@@ -64,7 +71,7 @@ namespace DCATS.Assets.Tools
 
         public Screwdriver()
         {
-
+            
         }
 
         public Screwdriver(ScrewKind kind) : this()
@@ -84,23 +91,61 @@ namespace DCATS.Assets.Tools
         {
             Debug.Log("Screwdriver is DISABLED.");
 
-            //base.OnDisable();
+            base.OnDisable();
         }
 
 
         protected override void UseStart()
         {
             Debug.Log("Screwdriver is being USED.");
-            var objs = this.gameObject.scene.GetRootGameObjects();
+            Screw closest = null;
+            float closestDistance = 0.0f;
+
+            GameObject screwObject = FindClosestScrew(out closest, out closestDistance);
+
+            
+
+            if (closest != null && closestDistance <= CutoffDistance)
+            {
+                AttachScrew(closest);
+            }
+        }
+
+        protected override void UseEnd()
+        {
+            Debug.Log("Screwdriver is DONE being USED.");
+
+            if (this.AttachedScrew != null)
+            {
+                ReleaseScrew();
+            }
+        }
+
+
+        protected void AttachScrew(Screw screw)
+        {
+            this.TipGrabber.DoGrab(screw);
+            this.AttachedScrew = screw.gameObject;
+        }
+
+        protected void ReleaseScrew()
+        {
+            GameObject screw = this.AttachedScrew;
+
+            this.TipGrabber.FinishGrab();
+
+            this.AttachedScrew = null;
+        }
+
+        protected GameObject FindClosestScrew(out Screw outScrew, out float distance)
+        {
             Screw closest = null;
             float closestDistance = 0.0f;
             var screws = Component.FindObjectsOfType(typeof(Screw)).OfType<Screw>();
 
             foreach (var screw in screws)
             {
-                Debug.Log("Found a screw!");
                 var dist = (screw.transform.position - this.transform.position).magnitude;
-                Debug.Log("Distance: " + dist.ToString());
                 if (screw.Kind == this.Kind)
                 {
                     if (closest == null)
@@ -119,69 +164,9 @@ namespace DCATS.Assets.Tools
                 }
             }
 
-            //foreach (var obj in objs)
-            //{
-            //    var comps = obj.GetComponentsInChildren<Screw>();
-            //    if (comps == null || comps.Length == 0)
-            //    {
-            //        continue;
-            //    }
-
-            //    foreach (var screw in comps)
-            //    {
-            //        Debug.Log("Found a screw!");
-            //        var dist = (screw.transform.position - this.transform.position).magnitude;
-            //        Debug.Log("Distance: " + dist.ToString());
-            //        if (screw.Kind == this.Kind)
-            //        {
-            //            if (closest == null)
-            //            {
-            //                closest = screw;
-            //                closestDistance = dist;
-            //            }
-            //            else
-            //            {
-            //                if (dist < closestDistance)
-            //                {
-            //                    closestDistance = dist;
-            //                    closest = screw;
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-
-            
-
-            if (closest != null && closestDistance <= CutoffDistance)
-            {
-                Debug.Log("Attaching screw...");
-                AttachScrew(closest);
-            }
-            else
-            {
-                Debug.Log("Too far away or no screw found. Closest screw: " + closestDistance.ToString());
-            }
-        }
-
-        protected override void UseEnd()
-        {
-            Debug.Log("Screwdriver is DONE being USED.");
-        }
-
-
-        protected void AttachScrew(Screw screw)
-        {
-            var grabbable = screw.GetComponent<BaseGrabbable>();
-            if (!grabbable.TryGrabWith(TipGrabber))
-            {
-                Debug.Log("Couldn't grab the screw.");
-                // TODO
-            }
-            else
-            {
-                Debug.Log("Grabbed the screw!!!");
-            }
+            outScrew = closest;
+            distance = closestDistance;
+            return closest.gameObject;
         }
     }
 }
