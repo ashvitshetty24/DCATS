@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4419260290360172}
   - component: {fileID: 33494802213709188}
   - component: {fileID: 23904594427592774}
+  - component: {fileID: 114206505794105156}
   m_Layer: 0
   m_Name: SlotBase
   m_TagString: Untagged
@@ -51,6 +52,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4938277706630430}
+  - component: {fileID: 114318490301492418}
   m_Layer: 0
   m_Name: Motherboard-Power-Slot
   m_TagString: Untagged
@@ -180,7 +182,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100012, guid: 7c04f35124cc64c4881b11761a277776, type: 3}
+  - {fileID: 2100000, guid: 95c96239ad55c964b889457f126642d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -250,3 +252,26 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: DCATS.Assets.Plugs.WirePluggedEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114206505794105156
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1572142639148994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f5eaf7285ca8145ba1824dd3293167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114318490301492418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1774426925115784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 148b4da333554634490bcdefa8efebde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseColorCoding: 1

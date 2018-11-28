@@ -11,6 +11,9 @@ namespace DCATS.Assets.Plugs
     {
         MotherboardPower = 1,
         USB = 2,
+        SATAData = 3,
+        SATAPower = 4,
+        CPUFan = 5,
 
     }
 }
