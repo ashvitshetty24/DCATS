@@ -178,7 +178,6 @@ namespace DCATS.Assets.Plugs
             DeselectSlot(SelectedSlot);
             SelectedSlot = null;
 
-            // TODO:
             // - End grab
             // - Start grab from slot to component
             // - Set the "PluggedSlot" property
