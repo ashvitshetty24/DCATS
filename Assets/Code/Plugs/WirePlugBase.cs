@@ -82,7 +82,6 @@ namespace DCATS.Assets.Plugs
 
         protected virtual void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Plug triggered! - " + other.name);
             CollidersInRange.Add(other);
         }
 
