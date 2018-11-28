@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace DCATS.Assets.Tools
 {
-    public class Screw : GrabbableSnapToOrient
+    public class Screw : AttachGrabbableBase
     {
         [SerializeField]
         public ScrewKind Kind = ScrewKind.Phillips;
