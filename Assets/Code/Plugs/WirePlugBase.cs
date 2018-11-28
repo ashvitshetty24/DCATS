@@ -180,11 +180,8 @@ namespace DCATS.Assets.Plugs
 
             // TODO:
             // - End grab
-            // - Move the plug into position
+            // - Start grab from slot to component
             // - Set the "PluggedSlot" property
-            // - Set kinematic (?)
-            // - Set transform parent
-            // ...
 
 
             var grabbable = this.Grabbable();
@@ -194,18 +191,7 @@ namespace DCATS.Assets.Plugs
             }
 
             slot.DoGrab(grabbable);
-
-            //PreviousParent = this.transform.parent;
-            //this.transform.parent = slot.GetPlugPosition();
-            this.PluggedSlot = slot;
-            //var body = this.GetComponent<Rigidbody>();
-            //if (body != null)
-            //{
-            //    WasKinematicBefore = body.isKinematic;
-            //    body.isKinematic = true;
-            //}
-
-
+            PluggedSlot = slot;
             PlugSuccess(slot);
 
             if (slot.OnPlugSuccess != null)
