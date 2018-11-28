@@ -83,7 +83,6 @@ namespace DCATS.Assets.Plugs
                 if (material.color != SlotColor)
                 {
                     material.color = SlotColor;
-                    Debug.Log("Material updated!");
                 }
             }
         }
