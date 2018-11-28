@@ -33,9 +33,6 @@ namespace DCATS.Assets.Plugs
         [SerializeField]
         public PlugType Kind;
 
-        [SerializeField]
-        public float Threshold = 0.1f;
-
         public WirePluggedEvent OnPlugAttempt;
         public WirePluggedEvent OnPlugSuccess;
         public WirePluggedEvent OnPlugFail;
@@ -198,14 +195,24 @@ namespace DCATS.Assets.Plugs
 
         public bool TryDetach()
         {
-            // TODO
-            // ...
+           if (PluggedSlot == null)
+            {
+                return false;
+            }
 
-            throw new NotImplementedException();
+
+
+            // TODO (?)
+            // ...
+            DetachSlot();
+            return true;
         }
 
         private void DetachSlot()
         {
+            Grabbable().DetachAllGrabbers();
+            PluggedSlot = null;
+
             // TODO
             // ...
 

@@ -83,7 +83,7 @@ namespace DCATS.Assets.Plugs
                             SelectSlot(closest);
                         }
                     }
-                    else if ((slot.transform.position - this.transform.position).magnitude <= Threshold)
+                    else
                     {
                         SelectSlot(slot);
                     }
