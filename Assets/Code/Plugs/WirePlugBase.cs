@@ -26,8 +26,6 @@ namespace DCATS.Assets.Plugs
                 return PluggedSlot != null;
             }
         }
-        private Transform PreviousParent = null;
-        private bool WasKinematicBefore = false;
 
 
         protected bool _RequireInteraction { get; set; }
