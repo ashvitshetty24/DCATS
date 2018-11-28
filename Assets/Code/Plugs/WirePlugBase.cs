@@ -50,16 +50,10 @@ namespace DCATS.Assets.Plugs
         protected override void OnEnable()
         {
             base.OnEnable();
-
-            Debug.Log("Do something here with the usable object...");
-            Debug.LogWarning("Do something here with the usable object...");
         }
 
         protected override void OnDisable()
         {
-            Debug.Log("Do something here with the usable object...");
-            Debug.LogWarning("Do something here with the usable object...");
-
             base.OnDisable();
         }
 

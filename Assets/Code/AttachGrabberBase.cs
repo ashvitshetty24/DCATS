@@ -19,7 +19,7 @@ namespace DCATS.Assets
             grabbedObjects.Clear();
         }
 
-        public void DoGrab(BaseGrabbable obj)
+        public virtual void DoGrab(BaseGrabbable obj)
         {
             if (obj.TryGrabWith(this))
             {
@@ -27,7 +27,7 @@ namespace DCATS.Assets
             }
         }
 
-        public void FinishGrab()
+        public virtual void FinishGrab()
         {
             this.GrabEnd();
         }
