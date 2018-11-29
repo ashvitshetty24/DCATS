@@ -5,10 +5,11 @@ using System.Text;
 using UnityEngine;
 using UnityEditor;
 using HoloToolkit.Unity.InputModule.Examples.Grabbables;
+using DCATS.Assets.Attachable;
 
 namespace DCATS.Assets.Plugs
 {
-    public class PlugSlot : AttachGrabberBase
+    public class PlugSlot : AttachGrabberBase, IAttachableKindInfo<PlugType>
     {
         [SerializeField]
         public PlugType Kind;
@@ -17,6 +18,18 @@ namespace DCATS.Assets.Plugs
 
         public WirePlugBase Plug { get; protected set; }
 
+        PlugType IAttachableKindInfo<PlugType>.Kind
+        {
+            get
+            {
+                return this.Kind;
+            }
+
+            set
+            {
+                this.Kind = value;
+            }
+        }
 
         public override void DoGrab(BaseGrabbable obj)
         {

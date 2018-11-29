@@ -8,11 +8,11 @@ using UnityEngine.Events;
 
 namespace DCATS.Assets.Plugs
 {
-    class WireAutoPlug : WirePlugBase
+    public class WireAutoPlug : WirePlugBase
     {
         public WireAutoPlug() : base()
         {
-            _RequireInteraction = false;
+            
         }
 
         protected override void Update()

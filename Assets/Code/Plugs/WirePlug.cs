@@ -17,7 +17,7 @@ namespace DCATS.Assets.Plugs
 
         public WirePlug() : base()
         {
-            this._RequireInteraction = true;
+            
         }
 
         protected override void UseStart()

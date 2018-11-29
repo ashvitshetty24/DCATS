@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace DCATS.Assets
+namespace DCATS.Assets.Attachable
 {
     public class AttachGrabbableBase : GrabbableSnapToOrient
     {

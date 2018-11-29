@@ -5,6 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEditor;
 using HoloToolkit.Unity.InputModule.Examples.Grabbables;
+using DCATS.Assets.Attachable;
 
 namespace DCATS.Assets.Plugs
 {
