@@ -5,12 +5,11 @@ using System.Text;
 using UnityEngine;
 using HoloToolkit.Unity.InputModule.Examples.Grabbables;
 using UnityEngine.Events;
+using DCATS.Assets.Attachable;
 
 namespace DCATS.Assets.Components
 {
-    public enum ComponentType
+    public class ComponentAttacher : AttachableBase<ComponentSlot, ComponentType>
     {
-        CPU = 1,
-        // TODO: Other components
     }
 }
