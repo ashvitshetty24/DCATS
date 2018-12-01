@@ -62,10 +62,16 @@ namespace DCATS.Assets.Attachable
         {
             if (Base.UnPluggable || !Base.IsPluggedIn())
             {
+                if (Base.UnPluggable)
+                {
+                    Debug.LogWarning("MARKED AS UNPLUGGABLE WTF BRO");
+                }
                 return base.TryGrabWith(grabber);
             }
             else
             {
+                Debug.Log("Won't start duplicate grab action!! Already Plugged In: " + Base.PluggedInObject().name + ", Attempted Grabber: " + grabber.name);
+                Debug.Log("[" + name + "] " + "Stack: " + StackTraceUtility.ExtractStackTrace());
                 return false;
             }
         }
@@ -73,6 +79,13 @@ namespace DCATS.Assets.Attachable
         protected override void StartGrab(BaseGrabber grabber)
         {
             base.StartGrab(grabber);
+            if (grabber is AttachGrabberBase)
+            {
+                transform.position = transform.parent.position;
+                //UnityEngine.Physics.IgnoreCollision(GetComponent<Collider>(), grabber.GetComponent<Collider>());
+                //this.GetComponent<Collider>().isTrigger = true;
+            }
+            Base.SetGrabber(grabber);
         }
     }
 }

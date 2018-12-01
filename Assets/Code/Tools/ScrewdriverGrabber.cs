@@ -11,5 +11,10 @@ namespace DCATS.Assets.Tools
     public class ScrewdriverGrabber : AttachGrabberBase
     {
 
+
+        public override bool IsOccupied()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

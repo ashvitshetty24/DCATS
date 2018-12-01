@@ -11,6 +11,7 @@ namespace DCATS.Assets.Components
     public enum ComponentType
     {
         CPU = 1,
+        RAM = 2,
         // TODO: Other components
     }
 }

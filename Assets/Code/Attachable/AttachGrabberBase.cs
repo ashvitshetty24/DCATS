@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace DCATS.Assets.Attachable
 {
-    public class AttachGrabberBase : Grabber
+    public abstract class AttachGrabberBase : Grabber
     {
         protected override void OnEnable()
         {
@@ -24,12 +24,50 @@ namespace DCATS.Assets.Attachable
             if (obj.TryGrabWith(this))
             {
                 this.grabbedObjects.Add(obj);
+                Debug.LogWarning("[" + name + "] " + "TryGrabWith Succeeded. Grabbable: " + obj.name);
+            }
+            else
+            {
+                Debug.LogWarning("[" + name + "] " + "TryGrabWith failed! Grabbable: " + obj.name);
             }
         }
 
         public virtual void FinishGrab()
         {
             this.GrabEnd();
+        }
+
+        public abstract bool IsOccupied();
+    }
+
+    public class AttachGrabberBase<TAttachable> : AttachGrabberBase where TAttachable : AttachableBase
+    {
+        public TAttachable Plug { get; protected set; }
+
+        public override bool IsOccupied()
+        {
+            return this.Plug != null;
+        }
+
+        public override void DoGrab(BaseGrabbable obj)
+        {
+            base.DoGrab(obj);
+            var plugGrabbable = obj as AttachGrabbableBase;
+            if (plugGrabbable != null)
+            {
+                var plug = plugGrabbable.gameObject.GetComponent<TAttachable>();
+                if (plug != null)
+                {
+                    Debug.LogWarning("Plug grab activated.");
+                    this.Plug = plug;
+                }
+            }
+        }
+
+        public override void FinishGrab()
+        {
+            base.FinishGrab();
+            Plug = null;
         }
     }
 }

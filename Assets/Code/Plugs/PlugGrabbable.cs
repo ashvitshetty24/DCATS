@@ -14,7 +14,7 @@ namespace DCATS.Assets.Plugs
         protected override void StartGrab(BaseGrabber grabber)
         {
             base.StartGrab(grabber);
-            transform.position = transform.parent.position;
+            //transform.position = transform.parent.position;
         }
     }
 }

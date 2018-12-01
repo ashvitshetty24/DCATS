@@ -21,6 +21,9 @@ namespace DCATS.Assets.Attachable
         public bool UnPluggable = true;
 
         public abstract bool IsPluggedIn();
+        public abstract GameObject PluggedInObject();
+
+        public abstract void SetGrabber(BaseGrabber grabber);
     }
 
     public class AttachableBase<TSlotType> : AttachableBase where TSlotType : AttachGrabberBase
@@ -30,8 +33,36 @@ namespace DCATS.Assets.Attachable
         protected TSlotType SelectedSlot = null;
         public override bool IsPluggedIn()
         {
+            //if (PluggedSlot != null)
+            //{
+            //    if (this.Grabbable().GrabberPrimary == null)
+            //    {
+            //        throw new Exception("Inconsistent state!");
+            //    }
+            //}
+            return (this.Grabbable().GrabberPrimary != null && PluggedSlot != null);
             return PluggedSlot != null;
         }
+        public override GameObject PluggedInObject()
+        {
+            return PluggedSlot.gameObject;
+        }
+        public override void SetGrabber(BaseGrabber grabber)
+        {
+            if (grabber is TSlotType)
+            {
+                PluggedSlot = (grabber as TSlotType);
+                IsPluggedInOut = true;
+            }
+            else
+            {
+                PluggedSlot = null;
+                IsPluggedInOut = false;
+            }
+        }
+
+        [SerializeField]
+        public bool IsPluggedInOut = false;
 
         
 
@@ -126,6 +157,18 @@ namespace DCATS.Assets.Attachable
             }
 
 
+            AttachGrabberBase b = slot;
+
+            if (b.IsOccupied())
+            {
+                return false;
+            }
+
+            //Debug.Log("Not occupied!");
+            //var agb = (slot as AttachGrabberBase);
+
+
+
             PlugAttempt(slot);
 
             if (CheckKinds(slot))
@@ -156,7 +199,7 @@ namespace DCATS.Assets.Attachable
                 // - Highlight selected object
                 // ...
 
-                throw new NotImplementedException();
+                //throw new NotImplementedException();
 
             }
 
@@ -166,7 +209,7 @@ namespace DCATS.Assets.Attachable
 
         protected void AttachSlot(TSlotType slot)
         {
-            Debug.Log("Matching slot triggered.");
+            //Debug.Log("Matching slot triggered.");
 
 
 
@@ -183,12 +226,14 @@ namespace DCATS.Assets.Attachable
             var grabbable = this.Grabbable();
             if (grabbable != null)
             {
-                grabbable.TransferTo(slot);
+                
                 //grabbable.DetachAllGrabbers();
             }
+            grabbable.TransferTo(slot);
 
             slot.DoGrab(grabbable);
             PluggedSlot = slot;
+            IsPluggedInOut = true;
             PlugSuccess(slot);
 
             var slotEvents = slot as IAttachSlotEvents<TSlotType>;
@@ -220,6 +265,7 @@ namespace DCATS.Assets.Attachable
         {
             Grabbable().DetachAllGrabbers();
             PluggedSlot = null;
+            IsPluggedInOut = false;
 
             // TODO
             // ...
@@ -285,7 +331,7 @@ namespace DCATS.Assets.Attachable
             // - Un-Highlight slot
 
 
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected AttachGrabbableBase Grabbable()

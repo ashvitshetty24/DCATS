@@ -9,7 +9,7 @@ using DCATS.Assets.Attachable;
 
 namespace DCATS.Assets.Components
 {
-    public class ComponentSlot : AttachGrabberBase, IAttachableKindInfo<ComponentType>, IAttachSlotEvents<ComponentSlot>
+    public class ComponentSlot : AttachGrabberBase<ComponentAttacher>, IAttachableKindInfo<ComponentType>, IAttachSlotEvents<ComponentSlot>
     {
         [SerializeField]
         public ComponentType Kind;
