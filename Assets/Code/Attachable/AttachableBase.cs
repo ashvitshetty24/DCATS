@@ -15,18 +15,25 @@ namespace DCATS.Assets.Attachable
     }
 
 
-    public class AttachableBase<TSlotType> : BaseUsable where TSlotType : AttachGrabberBase
+    public abstract class AttachableBase : BaseUsable
+    {
+        [SerializeField]
+        public bool UnPluggable = true;
+
+        public abstract bool IsPluggedIn();
+    }
+
+    public class AttachableBase<TSlotType> : AttachableBase where TSlotType : AttachGrabberBase
     {
         protected readonly HashSet<Collider> CollidersInRange = new HashSet<Collider>();
         protected TSlotType PluggedSlot = null;
         protected TSlotType SelectedSlot = null;
-        public bool IsPluggedIn
+        public override bool IsPluggedIn()
         {
-            get
-            {
-                return PluggedSlot != null;
-            }
+            return PluggedSlot != null;
         }
+
+        
 
         protected virtual bool CheckKinds(TSlotType other)
         {
@@ -176,7 +183,8 @@ namespace DCATS.Assets.Attachable
             var grabbable = this.Grabbable();
             if (grabbable != null)
             {
-                grabbable.DetachAllGrabbers();
+                grabbable.TransferTo(slot);
+                //grabbable.DetachAllGrabbers();
             }
 
             slot.DoGrab(grabbable);

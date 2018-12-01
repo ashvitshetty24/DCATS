@@ -6,7 +6,7 @@ using UnityEngine;
 using HoloToolkit.Unity.InputModule.Examples.Grabbables;
 using UnityEngine.Events;
 
-namespace DCATS.Assets.Code.Components
+namespace DCATS.Assets.Components
 {
     public class ComponentInfoBase : MonoBehaviour, IComponentInfo
     {

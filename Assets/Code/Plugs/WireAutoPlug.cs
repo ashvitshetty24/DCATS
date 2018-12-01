@@ -18,7 +18,7 @@ namespace DCATS.Assets.Plugs
         protected override void Update()
         {
             base.Update();
-            if (!IsPluggedIn)
+            if (!IsPluggedIn())
             {
                 RecalculateSelected();
             }
