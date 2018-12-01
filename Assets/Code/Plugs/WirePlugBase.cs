@@ -33,6 +33,9 @@ namespace DCATS.Assets.Plugs
         [SerializeField]
         public PlugType Kind;
 
+        [SerializeField]
+        public bool UnPluggable = true;
+
         public WirePluggedEvent OnPlugAttempt;
         public WirePluggedEvent OnPlugSuccess;
         public WirePluggedEvent OnPlugFail;
@@ -174,7 +177,8 @@ namespace DCATS.Assets.Plugs
             var grabbable = this.Grabbable();
             if (grabbable != null)
             {
-                grabbable.DetachAllGrabbers();
+                grabbable.TransferTo(slot);
+                //grabbable.DetachAllGrabbers();
             }
 
             slot.DoGrab(grabbable);

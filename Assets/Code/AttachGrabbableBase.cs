@@ -26,5 +26,17 @@ namespace DCATS.Assets
                 this.DetachFromGrabber(grabber);
             }
         }
+
+        public virtual void TransferTo(BaseGrabber grabber)
+        {
+            foreach (var oldGrabber in this.ActiveGrabbers.ToList())
+            {
+                if (!oldGrabber.CanTransferOwnershipTo(this, grabber))
+                {
+                    Debug.LogError("Couldn't transfer ownership of " + this.name + " from " + oldGrabber.name);
+                }
+                //this.DetachFromGrabber(grabber); (?)
+            }
+        }
     }
 }
