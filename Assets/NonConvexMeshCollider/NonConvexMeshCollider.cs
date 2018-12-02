@@ -21,6 +21,8 @@ public class NonConvexMeshCollider : MonoBehaviour
 
     [Tooltip("Will create a child game object called 'Colliders' to store the generated colliders in. \n\rThis leads to a cleaner and more organized structure. \n\rPlease note that collisions will then report the child game object. So you may want to check for transform.parent.gameObject on your collision check.")]
     public bool createChildGameObject = true;
+    [Tooltip("!!CUSTOM!! (Added by Tyler): Will create one child game object PER COLLIDER. Needed for certain Obi options. Has no effect if 'Create Child Game Object' is false.")]
+    public bool oneChildPerCollider = false;
     [Tooltip("Takes a bit more time to compute, but leads to more performance optimized colliders (less boxes).")]
     public bool avoidGapsInside = false;
     [Tooltip("Makes sure all box colliders are generated completely on the inside of the mesh. More expensive to compute, but desireable if you need to avoid false collisions of objects very close to another, like rings of a chain for example.")]
@@ -93,13 +95,29 @@ public class NonConvexMeshCollider : MonoBehaviour
                     ? MergeBoxes(boxes.ToArray())
                     : boxes;
 
+            int colliderIndex = 0;
             foreach (var b in mergedBoxes)
             {
-                var bc = (createChildGameObject ? collidersGo : go).AddComponent<BoxCollider>();
+                BoxCollider bc = null;
+                if (createChildGameObject && oneChildPerCollider)
+                {
+                    var newObj = new GameObject("collider " + (colliderIndex+1));
+                    newObj.transform.parent = collidersGo.transform;
+                    newObj.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    newObj.transform.localPosition = Vector3.zero;
+                    newObj.layer = collidersGo.layer;
+                    bc = newObj.AddComponent<BoxCollider>();
+                    Debug.Log("Created child game object: " + newObj.name);
+                }
+                else
+                {
+                    bc = (createChildGameObject ? collidersGo : go).AddComponent<BoxCollider>();
+                }
                 bc.size = b.Size;
                 bc.center = b.Center;
                 if (physicsMaterialForColliders != null)
                     bc.material = physicsMaterialForColliders;
+                ++colliderIndex;
             }
             Debug.Log("NonConvexMeshCollider: " + mergedBoxes.Length + " box colliders created");
 
@@ -302,7 +320,7 @@ public class NonConvexMeshCollider : MonoBehaviour
         var bounds = CalculateLocalBounds(go);
         var mesh = colliderGo.GetComponent<MeshFilter>().sharedMesh;
         var swTree = Stopwatch.StartNew();
-        var tree = new SpatialBinaryTree(mesh, spatialTreeLevelDepth);
+        var tree = new SpatialBinaryTree(mesh, spatialTreeLevelDepth, outputTimeMeasurements);
         swTree.Stop();
         if (outputTimeMeasurements)
             Debug.Log("SpatialTree Built in " + swTree.Elapsed);
@@ -559,7 +577,7 @@ public class NonConvexMeshCollider : MonoBehaviour
 
     public class SpatialBinaryTree
     {
-        public SpatialBinaryTree(Mesh m, int maxLevels)
+        public SpatialBinaryTree(Mesh m, int maxLevels, bool outputProgress = false)
         {
             var boundingBox = new BoundingBox(
                 new Interval(m.vertices.Min(v => v.x), m.vertices.Max(v => v.x)),
@@ -575,6 +593,11 @@ public class NonConvexMeshCollider : MonoBehaviour
                 var v3 = m.vertices[m.triangles[i * 3 + 2]];
                 var t = new Tri(v1, v2, v3);
                 Add(t);
+
+                if (triCount > 20 && (i % (triCount / 20) == 0))
+                {
+                    Debug.Log("Spatial Tree Progress: " + (i + 1) + " / " + triCount);
+                }
             }
         }
 
