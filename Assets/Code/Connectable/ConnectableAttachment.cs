@@ -129,6 +129,17 @@ namespace DCATS.Assets.Connectable
 
             return false;
         }
+
+        public virtual bool ForceDetach()
+        {
+            var slot = this.GetSlot();
+            if (slot != null)
+            {
+                return slot.Detach();
+            }
+
+            return false;
+        }
     }
 
     public class ConnectableAttachment<TDiscriminator> : ConnectableAttachment

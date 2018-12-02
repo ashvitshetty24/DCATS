@@ -5,19 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using DCATS.Assets.Connectable;
 
 namespace DCATS.Assets.Tools
 {
-    public class Screw : AttachGrabbableBase
+    public class Screw : ConnectableAttachment<ScrewKind>
     {
-        [SerializeField]
-        public ScrewKind Kind = ScrewKind.Phillips;
-
-        protected override void StartGrab(BaseGrabber grabber)
-        {
-            base.StartGrab(grabber);
-            transform.position = transform.parent.position;
-            transform.Rotate(new Vector3(0, 1, 0), 180);
-        }
+        //protected override void StartGrab(BaseGrabber grabber)
+        //{
+        //    base.StartGrab(grabber);
+        //    transform.position = transform.parent.position;
+        //    transform.Rotate(new Vector3(0, 1, 0), 180);
+        //}
     }
 }
