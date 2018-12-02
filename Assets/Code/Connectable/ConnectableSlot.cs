@@ -10,9 +10,13 @@ namespace DCATS.Assets.Connectable
     public class ConnectableSlot : BaseGrabber
     {
         private Dictionary<Collider, bool> CollidersNeedingReEntry = new Dictionary<Collider, bool>();
+        protected HashSet<Collider> CollidersInRange = new HashSet<Collider>();
 
         [SerializeField]
         public bool Unpluggable = false;
+
+        [SerializeField]
+        public bool AutomaticAttach = true;
 
         public ConnectableAttachment Attached { get; protected set; }
 
@@ -39,11 +43,21 @@ namespace DCATS.Assets.Connectable
 
         protected void OnTriggerEnter(Collider other)
         {
+            CollidersInRange.Add(other);
+            
+
+
             bool needsExit = false;
             if (CollidersNeedingReEntry.TryGetValue(other, out needsExit) && needsExit)
             {
                 return;
             }
+
+            if (!AutomaticAttach)
+            {
+                return;
+            }
+
             GameObject otherObj = other.gameObject;
             ConnectableAttachment attachment = otherObj.GetComponent<ConnectableAttachment>();
 
@@ -63,6 +77,8 @@ namespace DCATS.Assets.Connectable
             {
                 CollidersNeedingReEntry[other] = false;
             }
+
+            CollidersInRange.Remove(other);
         }
 
 

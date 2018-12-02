@@ -7,8 +7,10 @@ using UnityEngine;
 
 namespace DCATS.Assets.Connectable
 {
-    public class ConnectableAttachment : GrabbableSnapToOrient
+    public abstract class ConnectableAttachment : GrabbableSnapToOrient
     {
+        private HashSet<Collider> CollidersInRange = new HashSet<Collider>();
+
         public virtual ConnectableSlot GetSlot()
         {
             return GrabberPrimary as ConnectableSlot;
@@ -19,6 +21,8 @@ namespace DCATS.Assets.Connectable
         public ConnectableEvent OnBadAttach;
 
 
+
+        protected abstract bool CompatibleDiscriminator(ConnectableSlot slot);
 
 
 
@@ -91,6 +95,40 @@ namespace DCATS.Assets.Connectable
                 Debug.Log("[" + name + "] " + "Being grabbed non-slot: " + grabber.name);
             }
         }
+
+        protected virtual void OnTriggerEnter(Collider other)
+        {
+            CollidersInRange.Add(other);
+        }
+
+        protected virtual void OnTriggerExit(Collider other)
+        {
+            CollidersInRange.Remove(other);
+        }
+
+
+        public virtual bool InitiateAttach()
+        {
+            var slots = CollidersInRange
+                .Select(collider => collider.gameObject.GetComponent<ConnectableSlot>())
+                .Where(slot => slot != null)
+                .OrderBy(slot => (slot.transform.position - this.transform.position).magnitude)
+                .ToList();
+
+
+            foreach (var slot in slots)
+            {
+                if (CompatibleDiscriminator(slot))
+                {
+                    if (slot.TryAttach(this))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 
     public class ConnectableAttachment<TDiscriminator> : ConnectableAttachment
@@ -109,6 +147,19 @@ namespace DCATS.Assets.Connectable
         public new ConnectableSlot<TDiscriminator> GetSlot()
         {
             return base.GetSlot() as ConnectableSlot<TDiscriminator>;
+        }
+
+        protected override bool CompatibleDiscriminator(ConnectableSlot slot)
+        {
+            var typedSlot = slot as ConnectableSlot<TDiscriminator>;
+            if (typedSlot != null)
+            {
+                return Kind.Equals(typedSlot.Kind);
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
