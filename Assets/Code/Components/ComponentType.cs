@@ -12,6 +12,8 @@ namespace DCATS.Assets.Components
     {
         CPU = 1,
         RAM = 2,
+        GPU = 3,
+        CPU_FAN = 4,
         // TODO: Other components
     }
 }
