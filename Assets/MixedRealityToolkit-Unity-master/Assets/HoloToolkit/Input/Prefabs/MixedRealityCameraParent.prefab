@@ -259,7 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4541142303025740}
   - component: {fileID: 114059824862712730}
-  - component: {fileID: 114812681035175298}
+  - component: {fileID: 114108843371361094}
   m_Layer: 0
   m_Name: MixedRealityCameraParent
   m_TagString: Untagged
@@ -409,7 +409,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1372541880982678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 4.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4766909944503646}
@@ -884,6 +884,34 @@ MonoBehaviour:
   JoystickXYRotationAxisControl: {fileID: 114991520948515094}
   JoystickXYTranslationAxisControl: {fileID: 114873870855691164}
   JoystickXZTranslationAxisControl: {fileID: 114029515443702222}
+--- !u!114 &114108843371361094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850730992894404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bc175d33f66e6647aabac1b65e7e632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HorizontalStrafe: 3
+  ForwardMovement: 4
+  HorizontalRotation: 1
+  VerticalRotation: 2
+  LeftThumbstickX: CONTROLLER_LEFT_STICK_HORIZONTAL
+  LeftThumbstickY: CONTROLLER_LEFT_STICK_VERTICAL
+  RightThumbstickX: CONTROLLER_RIGHT_STICK_HORIZONTAL
+  RightThumbstickY: CONTROLLER_RIGHT_STICK_VERTICAL
+  EnableTeleport: 1
+  EnableRotation: 0
+  EnableStrafe: 1
+  StayOnTheFloor: 1
+  RotationSize: 45
+  StrafeAmount: 0.25
+  teleportMarker: {fileID: 1503526479864244, guid: 10d95b99055c6ad40b735cc8b3593745,
+    type: 2}
+  useCustomMapping: 0
 --- !u!114 &114121188885475510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1135,29 +1163,6 @@ MonoBehaviour:
   Axis0Destination: 4
   Axis1Destination: 6
   Axis2Destination: 6
---- !u!114 &114812681035175298
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1850730992894404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08ea86ebe0172544fbb00a5641f6c1c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LeftHorizontal: 1
-  LeftVertical: 2
-  RightHorizontal: 3
-  RightVertical: 4
-  LeftThumbstickX: CONTROLLER_LEFT_STICK_HORIZONTAL
-  LeftThumbstickY: CONTROLLER_LEFT_STICK_VERTICAL
-  RightThumbstickX: CONTROLLER_RIGHT_STICK_HORIZONTAL
-  RightThumbstickY: CONTROLLER_RIGHT_STICK_VERTICAL
-  StayOnTheFloor: 1
-  StepAmount: 0.3
-  animationController: {fileID: 0}
-  useCustomMapping: 0
 --- !u!114 &114828096048444974
 MonoBehaviour:
   m_ObjectHideFlags: 1

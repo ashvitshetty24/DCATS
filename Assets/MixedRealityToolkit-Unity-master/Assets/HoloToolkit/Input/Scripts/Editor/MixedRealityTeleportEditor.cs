@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace HoloToolkit.Unity.InputModule
 {
-    [CustomEditor(typeof(MixedRealityLocomotion))]
+    [CustomEditor(typeof(MixedRealityTeleport))]
     public class MixedRealityTeleportEditor : Editor
     {
         private readonly GUIContent verticalRotationLabel = new GUIContent("Vertical Rotation", "Used to check the Horizontal Rotation and the intent of the user to rotate in that direction");
 
-        private static MixedRealityLocomotion mixedRealityTeleport;
+        private static MixedRealityTeleport mixedRealityTeleport;
 
         private static SerializedProperty teleportMakerPrefab;
         private static SerializedProperty useCustomMappingProperty;
@@ -38,7 +38,7 @@ namespace HoloToolkit.Unity.InputModule
 
         private void OnEnable()
         {
-            mixedRealityTeleport = (MixedRealityLocomotion)target;
+            mixedRealityTeleport = (MixedRealityTeleport)target;
 
             teleportMakerPrefab = serializedObject.FindProperty("teleportMarker");
             useCustomMappingProperty = serializedObject.FindProperty("useCustomMapping");
