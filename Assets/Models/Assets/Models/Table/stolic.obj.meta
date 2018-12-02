@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7c04f35124cc64c4881b11761a277776
+guid: 0583b8778f41fa046ab8efb559fc83f1
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -23,6 +23,7 @@ ModelImporter:
     2100006: Cylinder004Mat
     2100008: nogeMat
     2100010: plocaMat
+    2100012: wire_008061138
     2300000: Cylinder001
     2300002: Cylinder002
     2300004: Cylinder003

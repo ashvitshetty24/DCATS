@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: a9334c4fed68f47b6a8ba5847f383fdf
+guid: a02f6926a7d7c6e4797d405ebef7d753
 labels:
 - ObiRope
-timeCreated: 1510143116
-licenseType: Store
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
   executionOrder: 0

@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: f5729eb8875554844bfa34243d09293e
+guid: e8b57b23bfc18ca49b9cf90961128a46
 labels:
 - ObiRope
-timeCreated: 1519407547
-licenseType: Store
 TextScriptImporter:
+  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
