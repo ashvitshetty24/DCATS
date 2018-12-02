@@ -67,7 +67,6 @@ namespace DCATS.Assets.Connectable
 
         public override bool TryGrabWith(BaseGrabber grabber)
         {
-            Debug.Log("[" + name + "] " + "TryGrabWith() called. Grabber: " + grabber.name);
             var slot = GetSlot();
             if (slot != null)
             {
@@ -84,12 +83,12 @@ namespace DCATS.Assets.Connectable
             base.StartGrab(grabber);
             if (grabber is ConnectableSlot)
             {
-                Debug.Log("Grabbed by slot: " + grabber.name);
+                Debug.Log("[" + name + "] " + "Grabbed by slot: " + grabber.name);
                 transform.position = transform.parent.position;
             }
             else
             {
-                Debug.Log("Being grabbed non-slot: " + grabber.name);
+                Debug.Log("[" + name + "] " + "Being grabbed non-slot: " + grabber.name);
             }
         }
     }

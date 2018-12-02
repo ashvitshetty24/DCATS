@@ -68,7 +68,6 @@ namespace DCATS.Assets.Connectable
 
         public virtual bool TryAttach(ConnectableAttachment attach)
         {
-            Debug.Log("[" + name + "] " + "TryAttach() called.");
             if (attach != null)
             {
                 AttachAttempt(attach);

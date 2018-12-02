@@ -3,40 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using HoloToolkit.Unity.InputModule.Examples.Grabbables;
-using UnityEngine.Events;
-using DCATS.Assets.Attachable;
+using DCATS.Assets.Connectable;
 
 namespace DCATS.Assets.Components
 {
-    public class ComponentSlot : AttachGrabberBase<ComponentAttacher>, IAttachableKindInfo<ComponentType>, IAttachSlotEvents<ComponentSlot>
+    public class ComponentSlot : ConnectableSlot<ComponentType>
     {
-        [SerializeField]
-        public ComponentType Kind;
-
-        public AttachableEvent<ComponentSlot> OnAttachSuccess;
-
-        AttachableEvent<ComponentSlot> IAttachSlotEvents<ComponentSlot>.OnAttachSuccess
-        {
-            get
-            {
-                return this.OnAttachSuccess;
-            }
-        }
-
-        ComponentType IAttachableKindInfo<ComponentType>.Kind
-        {
-            get
-            {
-                return this.Kind;
-            }
-
-            set
-            {
-                this.Kind = value;
-            }
-        }
-
-        
     }
 }
