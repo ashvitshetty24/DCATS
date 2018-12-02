@@ -12,10 +12,12 @@ namespace DCATS.Assets.Utility
     public class CustomBoxColliderMove : MonoBehaviour
     {
 #if !OBI_UNAVAILABLE
+        [SerializeField]
         [Tooltip("Adds an Obi collider to each generated child object")]
         public bool addObiColliders = false;
 #endif
 
+        [SerializeField]
         [Tooltip("Preserve enabled/disabled")]
         public bool preserveEnabledOrDisabled = true;
 
