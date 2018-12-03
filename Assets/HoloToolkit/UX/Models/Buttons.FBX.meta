@@ -1,0 +1,247 @@
+fileFormatVersion: 2
+guid: 15ab338d233ebaf43b3f3b2bfaea422f
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Button
+    100002: ButtonOutline
+    100004: //RootNode
+    100006: CheckBoxButton
+    100008: CheckBoxCheck
+    100010: CheckBoxOutline
+    100012: RadialDot
+    100014: RadialOutline
+    100016: RaialButon
+    100018: SliderBar
+    100020: SliderFill
+    100022: SliderKnob
+    100024: ToggleButton
+    100026: ToggleDot
+    100028: ToggleOutline
+    400000: Button
+    400002: ButtonOutline
+    400004: //RootNode
+    400006: CheckBoxButton
+    400008: CheckBoxCheck
+    400010: CheckBoxOutline
+    400012: RadialDot
+    400014: RadialOutline
+    400016: RaialButon
+    400018: SliderBar
+    400020: SliderFill
+    400022: SliderKnob
+    400024: ToggleButton
+    400026: ToggleDot
+    400028: ToggleOutline
+    2300000: Button
+    2300002: ButtonOutline
+    2300004: CheckBoxButton
+    2300006: CheckBoxCheck
+    2300008: CheckBoxOutline
+    2300010: RadialDot
+    2300012: RadialOutline
+    2300014: RaialButon
+    2300016: SliderBar
+    2300018: SliderFill
+    2300020: SliderKnob
+    2300022: ToggleButton
+    2300024: ToggleDot
+    2300026: ToggleOutline
+    3300000: Button
+    3300002: ButtonOutline
+    3300004: CheckBoxButton
+    3300006: CheckBoxCheck
+    3300008: CheckBoxOutline
+    3300010: RadialDot
+    3300012: RadialOutline
+    3300014: RaialButon
+    3300016: SliderBar
+    3300018: SliderFill
+    3300020: SliderKnob
+    3300022: ToggleButton
+    3300024: ToggleDot
+    3300026: ToggleOutline
+    4300000: ButtonOutline
+    4300002: Button
+    4300004: CheckBoxOutline
+    4300006: CheckBoxButton
+    4300008: CheckBoxCheck
+    4300010: RadialOutline
+    4300012: RaialButon
+    4300014: RadialDot
+    4300016: ToggleButton
+    4300018: ToggleDot
+    4300020: ToggleOutline
+    4300022: SliderBar
+    4300024: SliderKnob
+    4300026: SliderFill
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Button
+    second: {fileID: 2100000, guid: ce6c03164b21ec445acbc09854641e94, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ButtonOutlineInner
+    second: {fileID: 2100000, guid: b00077288529a9a44bba2d31e9af1310, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ButtonOutlineOuter
+    second: {fileID: 2100000, guid: 34d4c6a9f2b795541bfdf87637e3c8be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CheckBoxButton
+    second: {fileID: 2100000, guid: aff500d211fe95143a86a4e95742c103, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CheckBoxCheck
+    second: {fileID: 2100000, guid: 4d3d805ed0b09424daacb8e1abef99fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CheckBoxOutlineInner
+    second: {fileID: 2100000, guid: 3205ef02622f86242a1d5452e8517f5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CheckBoxOutlineOuter
+    second: {fileID: 2100000, guid: 173add749c5480e45b8ab3a5e7cdccd3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RadialButton
+    second: {fileID: 2100000, guid: a3d453ea71cb8044cae8a09cf72c6bd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RadialDot
+    second: {fileID: 2100000, guid: c07d73757f8e8f845a43047002074c4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RadialOutlineInner
+    second: {fileID: 2100000, guid: 00c0aa864a4c7ca49861b9644a423c91, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RadialOutlineOuter
+    second: {fileID: 2100000, guid: 2e10dece20918154092b386d6a70f3a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SliderBar
+    second: {fileID: 2100000, guid: b19bebbecddd18d41b935dbbc546dca3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SliderFill
+    second: {fileID: 2100000, guid: ce4df33d38f8e4748b0a0dde19cf2412, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SliderKnob
+    second: {fileID: 2100000, guid: 6045b8c3a2c03db4d9bb15a40b7b47ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToggleButton
+    second: {fileID: 2100000, guid: 31ca0241942fa23458c2a0fe162ee20d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToggleDot
+    second: {fileID: 2100000, guid: d22b54046e15d354fa3b0ad37a60c969, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToggleOutlineInner
+    second: {fileID: 2100000, guid: cf71e6e7e90311e4d89f5c47d753af5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToggleOutlineOuter
+    second: {fileID: 2100000, guid: bb1f1d24220496f45b3d9937e182484b, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 0
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
