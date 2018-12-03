@@ -9,6 +9,7 @@ using DCATS.Assets.Attachable;
 
 namespace DCATS.Assets.Plugs
 {
+    [AddComponentMenu("DCATS/Plugs/Plug Slot")]
     public class PlugSlot : AttachGrabberBase<WirePlugBase>, IAttachableKindInfo<PlugType>
     {
         [SerializeField]
