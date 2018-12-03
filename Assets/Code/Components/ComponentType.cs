@@ -14,6 +14,9 @@ namespace DCATS.Assets.Components
         RAM = 2,
         GPU = 3,
         CPU_FAN = 4,
+        PSU = 5,
+        HDD = 6,
+        MOBO = 7,
         // TODO: Other components
     }
 }

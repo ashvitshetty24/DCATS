@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40781677294a0e4caffa3460012ae41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RecognizerStart: 0
+  RecognizerStart: 1
   UseRailsNavigation: 0
 --- !u!114 &114000013868099214
 MonoBehaviour:
@@ -363,8 +363,8 @@ MonoBehaviour:
   LerpStabilizationPlanePowerCloser: 4
   LerpStabilizationPlanePowerFarther: 7
   targetOverride: {fileID: 0}
-  trackVelocity: 0
-  UseGazeManager: 0
+  trackVelocity: 1
+  UseGazeManager: 1
   DefaultPlaneDistance: 2
   DrawGizmos: 0
 --- !u!114 &114080562701649166
@@ -459,10 +459,10 @@ MonoBehaviour:
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
+  m_HorizontalAxis: CONTROLLER_RIGHT_STICK_HORIZONTAL
+  m_VerticalAxis: CONTROLLER_RIGHT_STICK_VERTICAL
+  m_SubmitButton: CONTROLLER_RIGHT_MENU
+  m_CancelButton: CONTROLLER_RIGHT_STICK_CLICK
   m_InputActionsPerSecond: 1
   m_RepeatDelay: 1
   m_ForceModuleActive: 0
@@ -498,7 +498,7 @@ MonoBehaviour:
   - serializedVersion: 2
     m_Bits: 4294967291
   registeredPointers: []
-  autoRegisterGazePointerIfNoPointersRegistered: 0
+  autoRegisterGazePointerIfNoPointersRegistered: 1
   debugDrawPointingRays: 0
   debugDrawPointingRayColors: []
   uiRaycastCamera: {fileID: 20049547090947856}
@@ -515,8 +515,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ControllerPointerStabilizer: {fileID: 114345042324023316}
   Cursor: {fileID: 0}
-  searchForCursorIfUnset: 0
-  autoselectBestAvailable: 0
+  searchForCursorIfUnset: 1
+  autoselectBestAvailable: 1
   linePointerPrefab: {fileID: 1071219928950220, guid: 7dd8661d4bacf2546a0237daef280291,
     type: 2}
 --- !u!114 &114749671304188880
