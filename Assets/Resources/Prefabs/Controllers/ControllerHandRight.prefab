@@ -58,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4bd0d08cd02fb42488c7fd1abfa0203f, type: 2}
+  - {fileID: 2100000, guid: a0b82b3a487b9c04c898aef9a666e508, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,13 +120,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1383102000013022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b28d4c5e55448746bfb3379b5741ec9, type: 3}
+  m_Script: {fileID: 11500000, guid: d8bba48588a2d5b4590301cfeb410ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grabAttachSpot: {fileID: 0}
   strength: 1
-  handedness: 1
+  handedness: 2
   grabbableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  pressType: 3
+  pressType: 0
