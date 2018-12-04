@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DCATS.Assets.Connectable;
+using UnityEngine;
 
 namespace DCATS.Assets.Tools
 {
@@ -12,11 +13,12 @@ namespace DCATS.Assets.Tools
         public ScrewdriverTip() : base()
         {
             Unpluggable = true;
-            AutomaticAttach = false;
+            AutomaticAttach = true;
         }
 
         public void ActionTriggered()
         {
+            Debug.Log("Action Triggered.");
             if (Attached)
             {
                 var screw = this.Attached as Screw;

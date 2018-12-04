@@ -111,7 +111,7 @@ namespace DCATS.Assets.Tools
             //    AttachScrew(closest);
             //}
 
-            //Tip.ActionTriggered();
+            Tip.ActionTriggered();
         }
 
         protected override void InputEnd(InteractionSourceReleasedEventArgs e)

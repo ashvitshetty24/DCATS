@@ -1,116 +1,117 @@
-﻿using System;
+﻿#define VERBOSE_DEBUG
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 using HoloToolkit.Unity.InputModule.Examples.Grabbables;
 using UnityEngine.Events;
+using DCATS.Assets.Connectable;
+using DCATS.Assets.Extensions;
+
 
 namespace DCATS.Assets.Plugs
 {
-
-    public class WirePlug : WirePlugBase
+    [AddComponentMenu("DCATS/Plugs/Plug")]
+    public class WirePlug : ConnectableAttachment<PlugType>
     {
-        protected readonly HashSet<PlugSlot> SlotsDetected = new HashSet<PlugSlot>();
+        private static Material IndicatorMaterial = null;
 
-        protected bool Interacting = false;
+        [SerializeField]
+        public bool UseColorCoding = true;
 
-        public WirePlug() : base()
+        public Color SlotColor { get; protected set; }
+
+        private void SetSlotColor()
         {
-            
+            if (UseColorCoding)
+            {
+                Color color = ColorCoding.ColorForPlug(this.Kind);
+                SlotColor = color;
+            }
+            else
+            {
+                SlotColor = ColorCoding.Default;
+            }
         }
 
-        protected override void UseStart()
-        {
-            base.UseStart();
-            Interacting = true;
 
-            foreach (var collider in this.CollidersInRange)
+        public void SetColorCoding(bool state)
+        {
+            SetSlotColor();
+            if (UseColorCoding != state)
             {
-                var slot = collider.GetComponent<PlugSlot>();
-                if (slot != null)
+                UseColorCoding = state;
+                UpdateColorCoding();
+            }
+        }
+
+        public void UpdateColorCoding()
+        {
+            if (this.Kind != PlugType.CPUFan)
+            {
+                return;
+            }
+            var renderer = this.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                var material = renderer.material;
+                if (material != null)
                 {
-                    SlotsDetected.Add(slot);
+                    
+
+                    if (UseColorCoding)
+                    {
+                        if (!material.name.Contains(ColorCoding.IndicatorMaterialName))
+                        {
+                            renderer.material = GetIndicatorMaterial();
+                        }
+
+                        if (material.color != SlotColor)
+                        {
+                            material.color = SlotColor;
+                        }
+                    }
+                    else if (material.name.Contains(ColorCoding.IndicatorMaterialName))
+                    {
+                        if (material.color != ColorCoding.Default)
+                        {
+                            material.color = ColorCoding.Default;
+                        }
+                    }
                 }
             }
-
-            PlugSlot closest = FindClosestSlot(SlotsDetected);
-
-
-            if (closest != null)
+#if VERBOSE_DEBUG
+            else
             {
-                SelectSlot(closest);
+                this.ObjectLog("Renderer was null!");
             }
+#endif
         }
 
-        protected override void UseEnd()
+        private static Material GetIndicatorMaterial()
         {
-            Interacting = false;
-            if (SelectedSlot != null)
-            {
-                this.TryPlug(SelectedSlot);
-            }
-            SlotsDetected.Clear();
-            base.UseEnd();
+            return Resources.Load<Material>("Materials/Plug Slot Indicator");
+        }
+
+        public void OnEnable()
+        {
+            SetSlotColor();
+            UpdateColorCoding();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+
+            SetSlotColor();
         }
 
         protected override void Update()
         {
             base.Update();
-            if (Interacting)
-            {
-                RecalculateSelected();
-            }
+            UpdateColorCoding();
         }
-
-        protected override void OnTriggerEnter(Collider other)
-        {
-            base.OnTriggerEnter(other);
-            if (Interacting)
-            {
-                GameObject otherObj = other.gameObject;
-                PlugSlot slot = otherObj.GetComponent<PlugSlot>();
-
-                if (slot != null)
-                {
-                    SlotsDetected.Add(slot);
-
-                    if (SlotsDetected.Count > 1)
-                    {
-                        var closest = FindClosestSlot(SlotsDetected);
-                        if (closest != null && closest != SelectedSlot)
-                        {
-                            SelectSlot(closest);
-                        }
-                    }
-                    else
-                    {
-                        SelectSlot(slot);
-                    }
-                }
-            }
-        }
-
-        protected override void OnTriggerExit(Collider collider)
-        {
-            base.OnTriggerExit(collider);
-
-
-            if (Interacting)
-            {
-                var slot = collider.gameObject.GetComponent<PlugSlot>();
-                if (slot != null)
-                {
-                    SlotsDetected.Remove(slot);
-                    if (SelectedSlot == slot)
-                    {
-                        var newSelected = FindClosestSlot(SlotsDetected);
-                        SelectSlot(newSelected);
-                    }
-                }
-            }
-        }
-
-        
     }
 }

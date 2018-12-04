@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 33746794554696232}
   - component: {fileID: 23473168716955172}
   - component: {fileID: 54228160666512370}
-  - component: {fileID: 114107927481823454}
+  - component: {fileID: 114883006052798820}
   m_Layer: 0
   m_Name: Motherboard
   m_TagString: Untagged
@@ -3682,19 +3682,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.016941799, y: 0.007366, z: 0.0202565}
   m_Center: {x: -0.3303651, y: 0.025781002, z: 0.17218025}
---- !u!114 &114107927481823454
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1498308827424024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b67ce99e42abe04eb41d69d5bd3eb94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabSpot: {fileID: 0}
-  grabStyle: 0
 --- !u!114 &114134982349292738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3708,9 +3695,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabAttachSpot: {fileID: 4635914919208552}
   strength: 1
+  handedness: 0
   grabbableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  pressType: 0
   Kind: 2
 --- !u!114 &114227466890954690
 MonoBehaviour:
@@ -3737,9 +3726,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabAttachSpot: {fileID: 4377316337819752}
   strength: 1
+  handedness: 0
   grabbableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  pressType: 0
   Kind: 2
 --- !u!114 &114263518062633394
 MonoBehaviour:
@@ -3754,9 +3745,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabAttachSpot: {fileID: 4869816683361424}
   strength: 1
+  handedness: 0
   grabbableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  pressType: 0
   Kind: 2
 --- !u!114 &114290415864425384
 MonoBehaviour:
@@ -3782,9 +3775,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabAttachSpot: {fileID: 0}
   strength: 1
+  handedness: 0
   grabbableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  pressType: 0
   Kind: 3
 --- !u!114 &114314723084506748
 MonoBehaviour:
@@ -3810,9 +3805,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabAttachSpot: {fileID: 0}
   strength: 1
+  handedness: 0
   grabbableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  pressType: 0
   Kind: 3
 --- !u!114 &114495314366085526
 MonoBehaviour:
@@ -3827,15 +3824,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabAttachSpot: {fileID: 4332090771689960}
   strength: 1
-  grabbableLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  Kind: 5
-  OnPlugSuccess:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: DCATS.Assets.Plugs.WirePluggedEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  handedness: 0
+  Unpluggable: 1
+  AutomaticAttach: 1
+  Type: 5
 --- !u!114 &114502657263082460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3849,15 +3841,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabAttachSpot: {fileID: 4612675412104294}
   strength: 1
-  grabbableLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  Kind: 1
-  OnPlugSuccess:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: DCATS.Assets.Plugs.WirePluggedEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  handedness: 0
+  Unpluggable: 1
+  AutomaticAttach: 1
+  Type: 1
 --- !u!114 &114592586450027726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3871,9 +3858,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabAttachSpot: {fileID: 4405438249725538}
   strength: 1
+  handedness: 0
   grabbableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  pressType: 0
   Kind: 2
 --- !u!114 &114615103321471992
 MonoBehaviour:
@@ -3900,7 +3889,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabAttachSpot: {fileID: 0}
   strength: 1
+  handedness: 0
   grabbableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  pressType: 0
   Kind: 1
+--- !u!114 &114883006052798820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1498308827424024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c9dadc828335a418464c34c8cd5a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabSpot: {fileID: 0}
+  grabStyle: 0
