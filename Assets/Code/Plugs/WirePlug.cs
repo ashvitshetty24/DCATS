@@ -16,8 +16,6 @@ namespace DCATS.Assets.Plugs
     [AddComponentMenu("DCATS/Plugs/Plug")]
     public class WirePlug : ConnectableAttachment<PlugType>
     {
-        private static Material IndicatorMaterial = null;
-
         [SerializeField]
         public bool UseColorCoding = true;
 

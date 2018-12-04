@@ -12,6 +12,8 @@ using Debug = UnityEngine.Debug;
 using UnityEditor;
 #endif
 
+#pragma warning disable
+
 [ExecuteInEditMode]
 public class NonConvexMeshCollider : MonoBehaviour
 {
@@ -1012,3 +1014,5 @@ public class NonConvexMeshColliderEditor : Editor
     }
 }
 #endif
+
+#pragma warning restore

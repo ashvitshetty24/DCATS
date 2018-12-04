@@ -5,6 +5,8 @@ using System.Text;
 using UnityEngine;
 using DCATS.Assets.Attributes;
 
+#pragma warning disable
+
 namespace DCATS.Assets.Physics
 {
     public class UGRope : BodyBehaviour, IRope
@@ -785,3 +787,5 @@ namespace DCATS.Assets.Physics
         }
     }
 }
+
+#pragma warning restore

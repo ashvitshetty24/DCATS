@@ -41,7 +41,6 @@ namespace DCATS.Assets.Attachable
             //    }
             //}
             return (this.Grabbable().GrabberPrimary != null && PluggedSlot != null);
-            return PluggedSlot != null;
         }
         public override GameObject PluggedInObject()
         {
