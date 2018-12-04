@@ -5,7 +5,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Obi{
+#pragma warning disable
+
+namespace Obi
+{
 	
 	/**
 	 * Custom inspector for ObiActor components.
@@ -1055,3 +1058,4 @@ namespace Obi{
 	}
 }
 
+#pragma warning restore
