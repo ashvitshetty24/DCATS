@@ -9,7 +9,9 @@ namespace DCATS.Assets.Plugs
 {
     public static class ColorCoding
     {
-        public static readonly Color MotherboardPower = new Color(29.0f/255, 32.0f/255, 85.0f/255);
+        public const string IndicatorMaterialName = "Plug Slot Indicator";
+
+        public static readonly Color MotherboardPower = new Color(29.0f/255, 32.0f/255, 85.0f/255, 1.0f);
         public static readonly Color USB = Color.magenta;
         public static readonly Color SATAData = Color.cyan;
         public static readonly Color SATAPower = Color.yellow;
