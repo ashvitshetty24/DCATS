@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33091633769643114}
   - component: {fileID: 23255046543524144}
   - component: {fileID: 65201225124708226}
-  - component: {fileID: 114749891978335124}
+  - component: {fileID: 114516683617072354}
   - component: {fileID: 54994348065433668}
   m_Layer: 0
   m_Name: ControllerHandRight
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 33464682950418188}
   - component: {fileID: 23443960165677218}
   - component: {fileID: 65407639903418234}
-  - component: {fileID: 114328065638905700}
+  - component: {fileID: 114607743149736250}
   - component: {fileID: 54038568315978382}
   m_Layer: 0
   m_Name: ControllerHandLeft
@@ -122,7 +122,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4bd0d08cd02fb42488c7fd1abfa0203f, type: 2}
+  - {fileID: 2100000, guid: 9548b2e9fd21275439362fc0199bd4fa, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,7 +156,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4bd0d08cd02fb42488c7fd1abfa0203f, type: 2}
+  - {fileID: 2100000, guid: 5b93845a03595874faae0f05496b20d0, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -244,25 +244,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1624004, y: 2.258042, z: 2.6769257}
   m_Center: {x: 0.41791815, y: 0.08566218, z: 0.52303314}
---- !u!114 &114328065638905700
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1967793028806540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b28d4c5e55448746bfb3379b5741ec9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabAttachSpot: {fileID: 0}
-  strength: 1
-  handedness: 1
-  grabbableLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  pressType: 3
---- !u!114 &114749891978335124
+--- !u!114 &114516683617072354
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -270,12 +252,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1261219146616612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b28d4c5e55448746bfb3379b5741ec9, type: 3}
+  m_Script: {fileID: 11500000, guid: d8bba48588a2d5b4590301cfeb410ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grabAttachSpot: {fileID: 0}
   strength: 1
   handedness: 2
+  grabbableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  pressType: 3
+--- !u!114 &114607743149736250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1967793028806540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8bba48588a2d5b4590301cfeb410ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabAttachSpot: {fileID: 0}
+  strength: 1
+  handedness: 1
   grabbableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
