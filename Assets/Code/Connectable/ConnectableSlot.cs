@@ -122,6 +122,7 @@ namespace DCATS.Assets.Connectable
                 EnableCollisions(Attached);
             }
             GrabEnd();
+            Attached.NotifyDetaching(this);
             Attached = null;
             return true;
         }

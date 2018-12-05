@@ -19,6 +19,7 @@ namespace DCATS.Assets.Connectable
         public ConnectableEvent OnAttachAttempt;
         public ConnectableEvent OnAttachSuccess;
         public ConnectableEvent OnBadAttach;
+        public ConnectableEvent OnDisconnect;
 
 
 
@@ -64,6 +65,14 @@ namespace DCATS.Assets.Connectable
             if (!otherAlreadyNotified && slot != null)
             {
                 slot.BadAttach(this, true);
+            }
+        }
+
+        public void WhenDetach(ConnectableSlot slot)
+        {
+            if (OnDisconnect != null)
+            {
+                OnDisconnect.Invoke(slot, this);
             }
         }
 
@@ -139,6 +148,11 @@ namespace DCATS.Assets.Connectable
             }
 
             return false;
+        }
+
+        public virtual void NotifyDetaching(ConnectableSlot slot)
+        {
+            WhenDetach(slot);
         }
     }
 
