@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using DCATS.Assets.Connectable;
 using UnityEngine;
+using DCATS.Assets.Extensions;
 
 namespace DCATS.Assets.Tools
 {
@@ -24,7 +25,8 @@ namespace DCATS.Assets.Tools
                 var screw = this.Attached as Screw;
                 if (screw != null)
                 {
-                    if (!screw.InitiateAttach())
+
+                    if (!screw.InitiateAttach<ScrewHole>())
                     {
                         screw.ForceDetach();
                     }
