@@ -47,10 +47,6 @@ namespace DCATS.Assets.Plugs
 
         public void UpdateColorCoding()
         {
-            if (this.Kind != PlugType.CPUFan)
-            {
-                return;
-            }
             var renderer = this.GetComponent<Renderer>();
             if (renderer != null)
             {
