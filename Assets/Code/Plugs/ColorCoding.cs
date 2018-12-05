@@ -17,7 +17,7 @@ namespace DCATS.Assets.Plugs
         public static readonly Color SATAPower = Color.yellow;
         public static readonly Color CPUFan = Color.green;
 
-        public static readonly Color Default = Color.black;
+        public static readonly Color Default = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
         public static Color ColorForPlug(PlugType kind)
         {
