@@ -41,7 +41,7 @@ namespace DCATS.Assets.Connectable
             return true;
         }
 
-        protected void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
             CollidersInRange.Add(other);
             

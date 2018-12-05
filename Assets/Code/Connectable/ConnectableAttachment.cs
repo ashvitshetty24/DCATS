@@ -139,6 +139,29 @@ namespace DCATS.Assets.Connectable
             return false;
         }
 
+        public virtual bool InitiateAttach<TSlot>() where TSlot : ConnectableSlot
+        {
+            var slots = CollidersInRange
+                .Select(collider => collider.gameObject.GetComponent<TSlot>())
+                .Where(slot => slot != null)
+                .OrderBy(slot => (slot.transform.position - this.transform.position).magnitude)
+                .ToList();
+
+
+            foreach (var slot in slots)
+            {
+                if (CompatibleDiscriminator(slot))
+                {
+                    if (slot.TryAttach(this))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public virtual bool ForceDetach()
         {
             var slot = this.GetSlot();
