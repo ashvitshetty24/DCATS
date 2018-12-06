@@ -10,12 +10,7 @@ namespace DCATS.Assets.Attachable
     public partial class SimLogic : MonoBehaviour {
 
         public bool isGuided;
-        public ComponentsList Components;
-
-        // Use this for initialization
-        public void Start() {
-
-        }
+        public static ComponentsList Components;
 
         // Update is called once per frame
         public void Update()
@@ -30,7 +25,7 @@ namespace DCATS.Assets.Attachable
         }
 
         // update installed components
-        public void UpdateInstalled(BaseGrabbable obj)
+        public static void UpdateComponents(BaseGrabbable obj)
         {
             switch(obj.name)
             {
