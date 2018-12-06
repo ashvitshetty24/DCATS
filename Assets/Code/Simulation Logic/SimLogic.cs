@@ -9,7 +9,7 @@ namespace DCATS.Assets.Attachable
 {
     public partial class SimLogic : MonoBehaviour {
 
-        public bool isGuided;
+        public static bool isGuided;
         public static ComponentsList Components = new ComponentsList();
 
         // Update is called once per frame
@@ -74,51 +74,88 @@ namespace DCATS.Assets.Attachable
                 case "CPU":
                     Components.CPU = true;
                     // trigger success sound
-                    // trigger transition in instructions from CPU to CPU Fan installation in Guided
+                    if(isGuided)
+                    {
+                        // trigger transition in instructions from CPU to CPU Fan installation 
+                    }
                     break;
                 case "CPU_Fan":
                     Components.CPU_Fan = true;
-                    break;
                     // trigger success sound
-                    // trigger transition in instructions from CPU Fan to GPU installation
+                    if (isGuided)
+                    {
+                        // trigger transition in instructions from CPU Fan to GPU installation
+                    }
+                    break;
                 case "GPU":
                     Components.GPU = true;
-                    break;
                     // trigger success sound
-                    // trigger transition from GPU to RAM installation
+                    if (isGuided)
+                    {
+                        // trigger transition from GPU to RAM installation
+                    }
+                    break;
                 case "RAM1":
                     Components.RAM1 = true;
-                    break;
+                    Components.CheckRam();
+                    if(isGuided && Components.allRamInstalled)
+                    {
+                        // trigger transition from RAM installation to Motherboard installation
+                    }
                     // trigger success sound
+                    break;
                 case "RAM2":
                     Components.RAM2 = true;
-                    break;
+                    Components.CheckRam();
+                    if (isGuided && Components.allRamInstalled)
+                    {
+                        // trigger transition from RAM installation to Motherboard installation
+                    }
                     // trigger success sound
+                    break;
                 case "RAM3":
                     Components.RAM3 = true;
-                    break;
+                    Components.CheckRam();
+                    if (isGuided && Components.allRamInstalled)
+                    {
+                        // trigger transition from RAM installation to Motherboard installation
+                    }
                     // trigger success sound
+                    break;
                 case "RAM4":
                     Components.RAM4 = true;
-                    break;
+                    Components.CheckRam();
+                    if (isGuided && Components.allRamInstalled)
+                    {
+                        // trigger transition from RAM installation to Motherboard installation
+                    }
                     // trigger success sound
+                    break;
                 case "Motherboard":
                     Components.Motherboard = true;
-                    break;
                     // trigger success sound
-                    // trigger transition from Motherboard to HDD installation
+                    if (isGuided)
+                    {
+                        // trigger transition from Motherboard to HDD installation
+                    }
+                    break;
                 case "HDD":
                     Components.HDD = true;
-                    break;
                     // trigger success sound
-                    // trigger transition from HDD to PSU installation
+                    if (isGuided)
+                    {
+                        // trigger transition from HDD to PSU installation
+                    }
+                    break;                
                 case "PSU":
                     Components.PSU = true;
-                    break;
                     // trigger success sound
-                }
-
-            Components.CheckRam();
+                    if (isGuided)
+                    {
+                        // trigger transition from PSU to PSU Cables installation
+                    }
+                    break;
+            }
             Components.CheckCompletion();
         }
     }
