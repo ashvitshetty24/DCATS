@@ -9,7 +9,7 @@ namespace DCATS.Assets.Attachable
 {
     public partial class SimLogic
     {
-        private class ControllerState
+        public class ControllerState
         {
             public InteractionSourceHandedness Handedness;
             public Vector3 PointerPosition;
@@ -27,9 +27,9 @@ namespace DCATS.Assets.Attachable
             public Vector2 TouchpadPosition;
         }
 
-        private Dictionary<uint, ControllerState> controllers;
+        public Dictionary<uint, ControllerState> controllers;
 
-        private void Awake()
+        public void Awake()
         {
             controllers = new Dictionary<uint, ControllerState>();
 
@@ -39,7 +39,7 @@ namespace DCATS.Assets.Attachable
             InteractionManager.InteractionSourceUpdated += InteractionManager_InteractionSourceUpdated;
         }
 
-        private void InteractionManager_InteractionSourceDetected(InteractionSourceDetectedEventArgs obj)
+        public void InteractionManager_InteractionSourceDetected(InteractionSourceDetectedEventArgs obj)
         {
             Debug.LogFormat("{0} {1} Detected", obj.state.source.handedness, obj.state.source.kind);
 
@@ -49,14 +49,14 @@ namespace DCATS.Assets.Attachable
             }
         }
 
-        private void InteractionManager_InteractionSourceLost(InteractionSourceLostEventArgs obj)
+        public void InteractionManager_InteractionSourceLost(InteractionSourceLostEventArgs obj)
         {
             Debug.LogFormat("{0} {1} Lost", obj.state.source.handedness, obj.state.source.kind);
 
             controllers.Remove(obj.state.source.id);
         }
 
-        private void InteractionManager_InteractionSourceUpdated(InteractionSourceUpdatedEventArgs obj)
+        public void InteractionManager_InteractionSourceUpdated(InteractionSourceUpdatedEventArgs obj)
         {
             ControllerState controllerState;
             if (controllers.TryGetValue(obj.state.source.id, out controllerState))
@@ -75,6 +75,11 @@ namespace DCATS.Assets.Attachable
                 controllerState.TouchpadPressed = obj.state.touchpadPressed;
                 controllerState.TouchpadTouched = obj.state.touchpadTouched;
                 controllerState.TouchpadPosition = obj.state.touchpadPosition;
+
+                if(controllerState.TouchpadPressed)
+                {
+                    // open pause menu
+                }
             }
         }
     }
