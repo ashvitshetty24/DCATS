@@ -1,5 +1,7 @@
 ﻿// Modified version DebugPanelControllerInfo.cs from Windows Mixed Reality Toolkit
 // This is simply using their code for extracting the state of the controller as input is read from it
+// Also, locomotion is achieved via a modification of some code from MixedRealityTeleport
+//  Instead of fading and strafing, the user takes steps with no fade included
 
 using UnityEngine.XR.WSA.Input;
 using UnityEngine;
@@ -85,19 +87,19 @@ namespace DCATS.Assets.Attachable
 
         void IControllerInputHandler.OnInputPositionChanged(InputPositionEventData eventData)
         {
-            if (eventData.Position.y < -0.8 && Math.Abs(eventData.Position.x) < 0.3)
+            if (eventData.Position.y < -0.6 && Math.Abs(eventData.Position.x) < 0.3)
             {
                 TakeStep(Vector3.back * stepSize);
             }
-            if (eventData.Position.y > 0.8 && Math.Abs(eventData.Position.x) < 0.3)
+            if (eventData.Position.y > 0.6 && Math.Abs(eventData.Position.x) < 0.3)
             {
                 TakeStep(Vector3.forward * stepSize);
             }
-            if (eventData.Position.x < -0.8 && Math.Abs(eventData.Position.y) < 0.3)
+            if (eventData.Position.x < -0.6 && Math.Abs(eventData.Position.y) < 0.3)
             {
                 TakeStep(Vector3.left * stepSize);
             }
-            else if (eventData.Position.x > 0.8 && Math.Abs(eventData.Position.y) < 0.3)
+            else if (eventData.Position.x > 0.6 && Math.Abs(eventData.Position.y) < 0.3)
             {
                 TakeStep(Vector3.right * stepSize);
             }
