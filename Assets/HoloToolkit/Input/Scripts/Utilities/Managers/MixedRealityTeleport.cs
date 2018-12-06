@@ -210,8 +210,10 @@ namespace HoloToolkit.Unity.InputModule
                         FinishTeleport();
                     }
                 }
-
-                if (EnableStrafe && currentPointingSource == null)
+                
+                // we will always have EnableStrafe enabled to be able to walk around, and rotation and teleportation will always be disabled
+                // added ability to strafe forward, left, and right
+                if (EnableStrafe)
                 {
                     if (eventData.Position.y < -0.8 && Math.Abs(eventData.Position.x) < 0.3)
                     {
@@ -221,8 +223,18 @@ namespace HoloToolkit.Unity.InputModule
                     {
                         DoStrafe(Vector3.forward * StrafeAmount);
                     }
+                    if (eventData.Position.x < -0.8 && Math.Abs(eventData.Position.y) < 0.3)
+                    {
+                        DoStrafe(Vector3.left * StrafeAmount);
+                    }
+                    else if (eventData.Position.x > 0.8 && Math.Abs(eventData.Position.y) < 0.3)
+                    {
+                        DoStrafe(Vector3.right * StrafeAmount);
+                    }
                 }
 
+                // for our purposes, we will never enable rotation, only strafing to be able to walk around. rotation is done by looking around with the headset
+                /*
                 if (EnableRotation && currentPointingSource == null)
                 {
                     if (eventData.Position.x < -0.8 && Math.Abs(eventData.Position.y) < 0.3)
@@ -233,7 +245,7 @@ namespace HoloToolkit.Unity.InputModule
                     {
                         DoRotation(RotationSize);
                     }
-                }
+                }*/
             }
         }
 

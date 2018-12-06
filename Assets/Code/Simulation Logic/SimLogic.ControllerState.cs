@@ -1,5 +1,6 @@
 ﻿// Modified version DebugPanelControllerInfo.cs from Windows Mixed Reality Toolkit
 // This is simply using their code for extracting the state of the controller as input is read from it
+/*
 
 using UnityEngine.XR.WSA.Input;
 using UnityEngine;
@@ -75,12 +76,8 @@ namespace DCATS.Assets.Attachable
                 controllerState.TouchpadPressed = obj.state.touchpadPressed;
                 controllerState.TouchpadTouched = obj.state.touchpadTouched;
                 controllerState.TouchpadPosition = obj.state.touchpadPosition;
-
-                if(controllerState.TouchpadPressed)
-                {
-                    // open pause menu
-                }
             }
         }
     }
 }
+*/

@@ -10,7 +10,7 @@ namespace DCATS.Assets.Attachable
     public partial class SimLogic : MonoBehaviour {
 
         public bool isGuided;
-        public static ComponentsList Components;
+        public static ComponentsList Components = new ComponentsList();
 
         // Update is called once per frame
         public void Update()
