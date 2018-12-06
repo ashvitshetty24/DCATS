@@ -12,18 +12,18 @@ namespace DCATS.Assets.Attachable
         // components list as Booleans
         public class ComponentsList
         {
-            public static bool CPU;
-            public static bool CPU_Fan;
-            public static bool GPU;
-            public static bool HDD;
-            public static bool Motherboard;
-            public static bool PSU;
-            public static bool RAM1;
-            public static bool RAM2;
-            public static bool RAM3;
-            public static bool RAM4;
-            public static bool allRamInstalled;
-            public static bool completed;
+            public bool CPU;
+            public bool CPU_Fan;
+            public bool GPU;
+            public bool HDD;
+            public bool Motherboard;
+            public bool PSU;
+            public bool RAM1;
+            public bool RAM2;
+            public bool RAM3;
+            public bool RAM4;
+            public bool allRamInstalled;
+            public bool completed;
 
             public ComponentsList ()
             {
@@ -41,7 +41,7 @@ namespace DCATS.Assets.Attachable
                 completed = false;
             }
 
-            public static void CheckRam()
+            public void CheckRam()
             {
                 if(RAM1 == true && RAM2 == true && RAM3 == true && RAM4 == true)
                 {
@@ -49,7 +49,7 @@ namespace DCATS.Assets.Attachable
                 }
             }
 
-            public static void CheckCompletion()
+            public void CheckCompletion()
             {
                 if(CPU == true &&
                     CPU_Fan == true &&
@@ -64,6 +64,22 @@ namespace DCATS.Assets.Attachable
                 {
                     completed = true;
                 }
+            }
+
+            public void Reset()
+            {
+                CPU = false;
+                CPU_Fan = false;
+                GPU = false;
+                HDD = false;
+                Motherboard = false;
+                PSU = false;
+                RAM1 = false;
+                RAM2 = false;
+                RAM3 = false;
+                RAM4 = false;
+                allRamInstalled = false;
+                completed = false;
             }
         }
     }
