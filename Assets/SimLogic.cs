@@ -51,7 +51,7 @@ namespace DCATS.Assets.Attachable
         void Update() {
             if(completed)
             {
-                
+                // trigger exit to main menu
             }
         }
 
