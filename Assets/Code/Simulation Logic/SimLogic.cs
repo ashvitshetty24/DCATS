@@ -9,13 +9,29 @@ namespace DCATS.Assets.Attachable
 {
     public partial class SimLogic : MonoBehaviour {
 
-        // Use this for initialization
-        public void Start() {
+        public bool ramCheck(ComponentsList this)
+        {
 
         }
 
+        // Use this for initialization
+        public void Start() {
+            ComponentsList.CPU = false;
+            ComponentsList.CPU_Fan = false;
+            ComponentsList.GPU = false;
+            ComponentsList.HDD = false;
+            ComponentsList.Motherboard = false;
+            ComponentsList.PSU = false;
+            ComponentsList.RAM1 = false;
+            ComponentsList.RAM2 = false;
+            ComponentsList.RAM3 = false;
+            ComponentsList.RAM4 = false;
+            ComponentsList.allRamInstalled = false;
+            ComponentsList.completed = false;
+        }
+
         // Update is called once per frame
-        public void Update() {
+        void Update() {
             if(ComponentsList.completed)
             {
                 // trigger alert informing user that they successfully completed the simulation
@@ -74,8 +90,18 @@ namespace DCATS.Assets.Attachable
                     break;
                     // trigger success sound
                 }
-            ComponentsList.CheckRam();
-            ComponentsList.CheckCompletion();
+            if(RAM1 == true && RAM2 == true && RAM3 == true && RAM4 == true)
+            {
+                allRamInstalled = true;
+                // trigger transition from RAM to Motherboard installation
+            }
+            for(int i = 0; i < Components.Count; i++)
+            {
+                if(Components.ElementAt(i) == false)
+                {
+                    return;
+                }
+                completed = true;
             }
         }
     }
