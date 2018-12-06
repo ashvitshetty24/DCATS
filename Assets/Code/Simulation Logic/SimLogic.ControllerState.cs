@@ -1,14 +1,16 @@
 ﻿// Modified version DebugPanelControllerInfo.cs from Windows Mixed Reality Toolkit
 // This is simply using their code for extracting the state of the controller as input is read from it
-/*
 
 using UnityEngine.XR.WSA.Input;
 using UnityEngine;
 using System.Collections.Generic;
+using HoloToolkit.Unity.InputModule;
+using System;
+using HoloToolkit.Unity;
 
 namespace DCATS.Assets.Attachable
 {
-    public partial class SimLogic
+    public partial class SimLogic : IControllerInputHandler
     {
         public class ControllerState
         {
@@ -29,6 +31,7 @@ namespace DCATS.Assets.Attachable
         }
 
         public Dictionary<uint, ControllerState> controllers;
+        public float stepSize = 0.5f;
 
         public void Awake()
         {
@@ -78,6 +81,33 @@ namespace DCATS.Assets.Attachable
                 controllerState.TouchpadPosition = obj.state.touchpadPosition;
             }
         }
+
+        void IControllerInputHandler.OnInputPositionChanged(InputPositionEventData eventData)
+        {
+            if (eventData.Position.y < -0.8 && Math.Abs(eventData.Position.x) < 0.3)
+            {
+                TakeStep(Vector3.back * stepSize);
+            }
+            if (eventData.Position.y > 0.8 && Math.Abs(eventData.Position.x) < 0.3)
+            {
+                TakeStep(Vector3.forward * stepSize);
+            }
+            if (eventData.Position.x < -0.8 && Math.Abs(eventData.Position.y) < 0.3)
+            {
+                TakeStep(Vector3.left * stepSize);
+            }
+            else if (eventData.Position.x > 0.8 && Math.Abs(eventData.Position.y) < 0.3)
+            {
+                TakeStep(Vector3.right * stepSize);
+            }
+        }
+
+        // modified version of 
+        public void TakeStep(Vector3 stepSize)
+        {
+            Transform transformToRotate = CameraCache.Main.transform;
+            transformToRotate.rotation = Quaternion.Euler(0, transformToRotate.rotation.eulerAngles.y, 0);
+            transform.Translate(stepSize, CameraCache.Main.transform);
+        }
     }
 }
-*/
