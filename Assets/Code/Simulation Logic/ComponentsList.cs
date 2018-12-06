@@ -60,7 +60,7 @@ namespace DCATS.Assets.Attachable
                     RAM1 == true &&
                     RAM2 == true &&
                     RAM3 == true &&
-                    RAM4 == true &&)
+                    RAM4 == true)
                 {
                     completed = true;
                 }
