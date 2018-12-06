@@ -10,6 +10,7 @@ using HoloToolkit.Unity;
 
 namespace DCATS.Assets.Attachable
 {
+    [RequireComponent(typeof(SetGlobalListener))]
     public partial class SimLogic : IControllerInputHandler
     {
         public class ControllerState
