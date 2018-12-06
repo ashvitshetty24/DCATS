@@ -82,6 +82,8 @@ GameObject:
   - component: {fileID: 114097014395025874}
   - component: {fileID: 64838249565836378}
   - component: {fileID: 114941745609006696}
+  - component: {fileID: 114417908332229802}
+  - component: {fileID: 114723339401246784}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -362,8 +364,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1474426389980200}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.131, y: -1.8, z: 1.635997}
+  m_LocalRotation: {x: -0, y: 0.846841, z: -0, w: 0.5318462}
+  m_LocalPosition: {x: -0.461, y: -0.06745106, z: 0.003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4811424413155026}
@@ -372,7 +374,7 @@ Transform:
   - {fileID: 4878874845220454}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 115.739006, z: 0}
 --- !u!4 &4232752845457960
 Transform:
   m_ObjectHideFlags: 1
@@ -3323,6 +3325,19 @@ MonoBehaviour:
     pinBreakResistance:
     - 3.4028235e+38
     - 3.4028235e+38
+--- !u!114 &114417908332229802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1453582780601178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9c876c87c4b734d91ac799734caf53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabSpot: {fileID: 0}
+  grabStyle: 0
 --- !u!114 &114453809070529074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4919,6 +4934,21 @@ MonoBehaviour:
   controlPointModes: 0000000000000000
   lastOpenCPMode: 0
   lastOpenCP: {x: 0, y: 0, z: 0}
+--- !u!114 &114723339401246784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1453582780601178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a581b4a18f216944923e2d6e9f7825d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handedness: 0
+  UnPluggable: 0
+  IsPluggedInOut: 0
+  Kind: 5
 --- !u!114 &114771040578248842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5168,7 +5198,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1453582780601178}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
   m_Name: 

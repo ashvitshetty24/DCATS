@@ -217,6 +217,10 @@ namespace HoloToolkit.Unity.InputModule
                     {
                         DoStrafe(Vector3.back * StrafeAmount);
                     }
+                    if (eventData.Position.y > 0.8 && Math.Abs(eventData.Position.x) < 0.3)
+                    {
+                        DoStrafe(Vector3.forward * StrafeAmount);
+                    }
                 }
 
                 if (EnableRotation && currentPointingSource == null)
