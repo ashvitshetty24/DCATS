@@ -5,28 +5,42 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-	public void UserInterface()
+    public void Start()
+    {
+        SceneManager.LoadScene("UserInterface");
+    }
+    public void UserInterface()
 	{
-		SceneManager.LoadScene(0);
-	}
+        Scene current = SceneManager.GetActiveScene();
+        SceneManager.LoadScene("UserInterface");
+        SceneManager.UnloadSceneAsync(current.name);
+    }
 
 	public void PlayGuided()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-	}
+        Scene current = SceneManager.GetActiveScene();
+        SceneManager.LoadScene("Guided Scene");
+        SceneManager.UnloadSceneAsync(current.name);
+    }
 
 	public void PlayUnGuided()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
-	}
+        Scene current = SceneManager.GetActiveScene();
+        SceneManager.LoadScene("Unguided Scene");
+        SceneManager.UnloadSceneAsync(current.name);
+    }
 	public void SystemInstruction()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
-	}
+        Scene current = SceneManager.GetActiveScene();
+        SceneManager.LoadScene("System Instruction");
+        SceneManager.UnloadSceneAsync(current.name);
+    }
 	public void ControllerControls()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
-	}
+        Scene current = SceneManager.GetActiveScene();
+        SceneManager.LoadScene("Controller Controls");
+        SceneManager.UnloadSceneAsync(current.name);
+    }
 	public void QuitGame()
 	{
 		Debug.Log("Quit!");

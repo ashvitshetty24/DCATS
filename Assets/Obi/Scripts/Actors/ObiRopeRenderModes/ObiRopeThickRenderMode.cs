@@ -27,10 +27,12 @@ namespace Obi
 
 		public override void Update(Camera camera){
 
-			if (rope.section == null || rope.ropeMesh == null) 
-				return;
+			if (rope.section == null || rope.ropeMesh == null)
+            {
+                return;
+            }
 
-			rope.SmoothCurvesFromParticles();
+            rope.SmoothCurvesFromParticles();
 
 			ClearMeshData();
 

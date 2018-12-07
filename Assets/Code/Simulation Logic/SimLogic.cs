@@ -1,9 +1,4 @@
-﻿using HoloToolkit.Unity.InputModule;
-using HoloToolkit.Unity.InputModule.Examples.Grabbables;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HoloToolkit.Unity.InputModule.Examples.Grabbables;
 using UnityEngine;
 
 namespace DCATS.Assets.Attachable
@@ -12,7 +7,8 @@ namespace DCATS.Assets.Attachable
     {
         public bool isGuided;
         public static ComponentsManager Instance;
-        public  AudioSource audioInstalled;
+        public AudioSource audioInstalled;
+        public AudioSource audioCompleted;
         public GameObject CPU_Instructions;
         public GameObject CPU_Fan_Instructions;
         public GameObject GPU_Instructions;
@@ -27,6 +23,7 @@ namespace DCATS.Assets.Attachable
         {
             Instance = new ComponentsManager(isGuided);
             audioInstalled = GetComponentInParent<AudioSource>();
+            audioCompleted = GetComponentInParent<AudioSource>();
             Debug.Log("This simulation is guided: " + isGuided);
             Debug.Log("Init " + CPU_Instructions);
             Debug.Log("Init " + CPU_Fan_Instructions);
@@ -50,9 +47,15 @@ namespace DCATS.Assets.Attachable
 
         public void endSim()
         {
-            // notify user that the simulation is complete
-            // delay
-            // load the main menu scene
+            if(isGuided)
+            {
+                Transition(PSU_Cable_Instructions, End_Simulation);
+            }
+            else
+            {
+                End_Simulation.SetActive(true);
+            }
+            
         }
 
         public void Transition(GameObject previous, GameObject next)
