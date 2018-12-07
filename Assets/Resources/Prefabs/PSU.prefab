@@ -82,8 +82,9 @@ GameObject:
   - component: {fileID: 114097014395025874}
   - component: {fileID: 64838249565836378}
   - component: {fileID: 114941745609006696}
-  - component: {fileID: 114417908332229802}
+  - component: {fileID: 114065818833045994}
   - component: {fileID: 114723339401246784}
+  - component: {fileID: 65688575298650880}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -969,7 +970,7 @@ MeshCollider:
   m_GameObject: {fileID: 1453582780601178}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -1311,6 +1312,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0225171, y: 0.0103251, z: 0.012915904}
   m_Center: {x: -0.10132695, y: 0.17116427, z: -0.07103744}
+--- !u!65 &65688575298650880
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1453582780601178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2202306, y: 0.1683427, z: 0.19069226}
+  m_Center: {x: -0.1101152, y: 0.084171176, z: 0.12398012}
 --- !u!65 &65693017160446682
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2896,6 +2909,19 @@ MonoBehaviour:
   totalParticles: 46
   startPrefabInstance: {fileID: 0}
   endPrefabInstance: {fileID: 0}
+--- !u!114 &114065818833045994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1453582780601178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9c876c87c4b734d91ac799734caf53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabSpot: {fileID: 0}
+  grabStyle: 0
 --- !u!114 &114097014395025874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3325,19 +3351,6 @@ MonoBehaviour:
     pinBreakResistance:
     - 3.4028235e+38
     - 3.4028235e+38
---- !u!114 &114417908332229802
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1453582780601178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c9c876c87c4b734d91ac799734caf53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabSpot: {fileID: 0}
-  grabStyle: 0
 --- !u!114 &114453809070529074
 MonoBehaviour:
   m_ObjectHideFlags: 1

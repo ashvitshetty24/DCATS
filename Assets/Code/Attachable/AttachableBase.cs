@@ -14,7 +14,6 @@ namespace DCATS.Assets.Attachable
 
     }
 
-
     public abstract class AttachableBase : BaseUsable
     {
         [SerializeField]
@@ -31,6 +30,32 @@ namespace DCATS.Assets.Attachable
         protected readonly HashSet<Collider> CollidersInRange = new HashSet<Collider>();
         protected TSlotType PluggedSlot = null;
         protected TSlotType SelectedSlot = null;
+
+        // events
+        public AttachableEvent<TSlotType> OnPlugAttempt;
+        public AttachableEvent<TSlotType> OnPlugSuccess;
+        public AttachableEvent<TSlotType> OnPlugFail;
+        public AttachableEvent<TSlotType> OnAttachAttempt;
+        public AttachableEvent<TSlotType> OnAttachSuccess;
+        public AttachableEvent<TSlotType> OnAttachFail;
+
+        // actions
+        public UnityAction<AttachableBase<TSlotType>, TSlotType> OPA;
+        public UnityAction<AttachableBase<TSlotType>, TSlotType> OPS;
+        public UnityAction<AttachableBase<TSlotType>, TSlotType> OPF;
+        public UnityAction<AttachableBase<TSlotType>, TSlotType> OAA;
+        public UnityAction<AttachableBase<TSlotType>, TSlotType> OAS;
+        public UnityAction<AttachableBase<TSlotType>, TSlotType> OAF;
+
+        public void Start()
+        {
+            // initialize actions and add listeners
+            OPS += SimLogic.UpdateComponents;
+            OAS += SimLogic.UpdateComponents;
+            OnPlugSuccess.AddListener(OPS);
+            OnAttachSuccess.AddListener(OAS);
+        }
+
         public override bool IsPluggedIn()
         {
             //if (PluggedSlot != null)
@@ -63,18 +88,12 @@ namespace DCATS.Assets.Attachable
         [SerializeField]
         public bool IsPluggedInOut = false;
 
-        
+
 
         protected virtual bool CheckKinds(TSlotType other)
         {
             return true;
         }
-
-
-
-        public AttachableEvent<TSlotType> OnPlugAttempt;
-        public AttachableEvent<TSlotType> OnPlugSuccess;
-        public AttachableEvent<TSlotType> OnPlugFail;
 
         protected AttachableBase()
         {
