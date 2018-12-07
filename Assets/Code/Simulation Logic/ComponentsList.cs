@@ -8,80 +8,77 @@ using UnityEngine;
 
 namespace DCATS.Assets.Attachable
 {
-    public partial class SimLogic
+    // components list as Booleans
+    public class ComponentsList
     {
-        // components list as Booleans
-        public class ComponentsList
+        public bool CPU;
+        public bool CPU_Fan;
+        public bool GPU;
+        public bool HDD;
+        public bool Motherboard;
+        public bool PSU;
+        public bool RAM1;
+        public bool RAM2;
+        public bool RAM3;
+        public bool RAM4;
+        public bool allRamInstalled;
+        public bool completed;
+
+        public ComponentsList ()
         {
-            public bool CPU;
-            public bool CPU_Fan;
-            public bool GPU;
-            public bool HDD;
-            public bool Motherboard;
-            public bool PSU;
-            public bool RAM1;
-            public bool RAM2;
-            public bool RAM3;
-            public bool RAM4;
-            public bool allRamInstalled;
-            public bool completed;
+            CPU = false;
+            CPU_Fan = false;
+            GPU = false;
+            HDD = false;
+            Motherboard = false;
+            PSU = false;
+            RAM1 = false;
+            RAM2 = false;
+            RAM3 = false;
+            RAM4 = false;
+            allRamInstalled = false;
+            completed = false;
+        }
 
-            public ComponentsList ()
+        public void CheckRam()
+        {
+            if(RAM1 == true && RAM2 == true && RAM3 == true && RAM4 == true)
             {
-                CPU = false;
-                CPU_Fan = false;
-                GPU = false;
-                HDD = false;
-                Motherboard = false;
-                PSU = false;
-                RAM1 = false;
-                RAM2 = false;
-                RAM3 = false;
-                RAM4 = false;
-                allRamInstalled = false;
-                completed = false;
+                allRamInstalled = true;
             }
+        }
 
-            public void CheckRam()
+        public void CheckCompletion()
+        {
+            if(CPU == true &&
+                CPU_Fan == true &&
+                GPU == true &&
+                HDD == true &&
+                Motherboard == true &&
+                PSU == true &&
+                RAM1 == true &&
+                RAM2 == true &&
+                RAM3 == true &&
+                RAM4 == true)
             {
-                if(RAM1 == true && RAM2 == true && RAM3 == true && RAM4 == true)
-                {
-                    allRamInstalled = true;
-                }
+                completed = true;
             }
+        }
 
-            public void CheckCompletion()
-            {
-                if(CPU == true &&
-                    CPU_Fan == true &&
-                    GPU == true &&
-                    HDD == true &&
-                    Motherboard == true &&
-                    PSU == true &&
-                    RAM1 == true &&
-                    RAM2 == true &&
-                    RAM3 == true &&
-                    RAM4 == true)
-                {
-                    completed = true;
-                }
-            }
-
-            public void Reset()
-            {
-                CPU = false;
-                CPU_Fan = false;
-                GPU = false;
-                HDD = false;
-                Motherboard = false;
-                PSU = false;
-                RAM1 = false;
-                RAM2 = false;
-                RAM3 = false;
-                RAM4 = false;
-                allRamInstalled = false;
-                completed = false;
-            }
+        public void Reset()
+        {
+            CPU = false;
+            CPU_Fan = false;
+            GPU = false;
+            HDD = false;
+            Motherboard = false;
+            PSU = false;
+            RAM1 = false;
+            RAM2 = false;
+            RAM3 = false;
+            RAM4 = false;
+            allRamInstalled = false;
+            completed = false;
         }
     }
 }

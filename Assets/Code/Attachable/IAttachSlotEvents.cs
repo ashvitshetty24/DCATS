@@ -8,8 +8,8 @@ using HoloToolkit.Unity.InputModule.Examples.Grabbables;
 
 namespace DCATS.Assets.Attachable
 {
-    public interface IAttachSlotEvents<TSlot> where TSlot : AttachGrabberBase
+    public interface IAttachSlotEvents<TSlotType> where TSlotType : AttachGrabberBase
     {
-        AttachableEvent<TSlot> OnAttachSuccess { get; }
+        AttachableEvent<TSlotType> OnAttachSuccess { get; }
     }
 }

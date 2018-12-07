@@ -9,9 +9,9 @@ using UnityEngine.Events;
 
 namespace DCATS.Assets.Attachable
 {
+    [Serializable]
     public class AttachableEvent<TSlotType> : UnityEvent<AttachableBase<TSlotType>, TSlotType> where TSlotType : AttachGrabberBase
     {
-
     }
 
     public abstract class AttachableBase : BaseUsable
@@ -32,29 +32,20 @@ namespace DCATS.Assets.Attachable
         protected TSlotType SelectedSlot = null;
 
         // events
-        public AttachableEvent<TSlotType> OnPlugAttempt;
-        public AttachableEvent<TSlotType> OnPlugSuccess;
-        public AttachableEvent<TSlotType> OnPlugFail;
-        public AttachableEvent<TSlotType> OnAttachAttempt;
-        public AttachableEvent<TSlotType> OnAttachSuccess;
-        public AttachableEvent<TSlotType> OnAttachFail;
+        public static AttachableEvent<TSlotType> OnPlugAttempt;
+        public static AttachableEvent<TSlotType> OnPlugSuccess;
+        public static AttachableEvent<TSlotType> OnPlugFail;
+        public static AttachableEvent<TSlotType> OnAttachAttempt;
+        public static AttachableEvent<TSlotType> OnAttachSuccess;
+        public static AttachableEvent<TSlotType> OnAttachFail;
 
         // actions
-        public UnityAction<AttachableBase<TSlotType>, TSlotType> OPA;
-        public UnityAction<AttachableBase<TSlotType>, TSlotType> OPS;
-        public UnityAction<AttachableBase<TSlotType>, TSlotType> OPF;
-        public UnityAction<AttachableBase<TSlotType>, TSlotType> OAA;
-        public UnityAction<AttachableBase<TSlotType>, TSlotType> OAS;
-        public UnityAction<AttachableBase<TSlotType>, TSlotType> OAF;
-
-        public void Start()
-        {
-            // initialize actions and add listeners
-            OPS += SimLogic.UpdateComponents;
-            OAS += SimLogic.UpdateComponents;
-            OnPlugSuccess.AddListener(OPS);
-            OnAttachSuccess.AddListener(OAS);
-        }
+        public static UnityAction<AttachableBase<TSlotType>, TSlotType> OPA;
+        public static UnityAction<AttachableBase<TSlotType>, TSlotType> OPS;
+        public static UnityAction<AttachableBase<TSlotType>, TSlotType> OPF;
+        public static UnityAction<AttachableBase<TSlotType>, TSlotType> OAA;
+        public static UnityAction<AttachableBase<TSlotType>, TSlotType> OAS;
+        public static UnityAction<AttachableBase<TSlotType>, TSlotType> OAF;
 
         public override bool IsPluggedIn()
         {
