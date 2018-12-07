@@ -8,25 +8,27 @@ using UnityEngine;
 
 namespace DCATS.Assets.Attachable
 {
-    public partial class SimLogic : MonoBehaviour
+    public class SimLogic : MonoBehaviour
     {
-        public static bool isGuided;
-        public static ComponentsList Components;
+        public static SimManager Instance;
 
-        // initialize
-        public void Start()
+        private void Start()
+        {
+            Instance = new SimManager();
+        }    
+    }
+    public class SimManager
+    {
+        public bool isGuided;
+        public ComponentsList Components;
+
+        public SimManager()
         {
             isGuided = false;
             Components = new ComponentsList();
         }
-        // Update is called once per frame
-        public void Update()
-        {
 
-        }
-
-        // update installed components
-        public static void UpdateComponents(BaseGrabbable obj)
+        public void UpdateComponents(BaseGrabbable obj)
         {
             Debug.LogWarning("SimLogic.UpdateComponents called with " + obj.name + "as argument.");
             switch (obj.name)
@@ -77,7 +79,7 @@ namespace DCATS.Assets.Attachable
                 case "CPU":
                     Debug.Log("CPU has been installed!");
                     Components.CPU = true;
-                    // trigger success sound
+
                     if (isGuided)
                     {
                         // trigger transition in instructions from CPU to CPU Fan installation 
@@ -168,11 +170,9 @@ namespace DCATS.Assets.Attachable
                         // trigger transition from PSU to PSU Cables installation
                     }
                     break;
-            }
-            Components.CheckCompletion();
-            if(Components.completed)
-            {
-                // end simulation
+                case null:
+                    Debug.LogWarning("UpdateComponents called with null BaseGrabbable obj!");
+                    break;
             }
         }
     }

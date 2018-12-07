@@ -24,7 +24,7 @@ namespace DCATS.Assets.Attachable
             if (obj.TryGrabWith(this))
             {
                 this.grabbedObjects.Add(obj);
-                SimLogic.UpdateComponents(obj);
+                SimLogic.Instance.UpdateComponents(obj);
                 Debug.LogWarning("[" + name + "] " + "TryGrabWith Succeeded. Grabbable: " + obj.name);
             }
             else
