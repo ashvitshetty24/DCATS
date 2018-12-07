@@ -3,43 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour {
+public class MainMenu : MonoBehaviour
+{
+
+    public GameObject MainUI;
+    public GameObject Controller_Controls;
+    public GameObject System_Instruction;
 
     public void Start()
     {
-        SceneManager.LoadScene("UserInterface");
+        Debug.Log("Init " + MainUI);
+        Debug.Log("Init " + Controller_Controls);
+        Debug.Log("Init " + System_Instruction);
     }
     public void UserInterface()
 	{
-        Scene current = SceneManager.GetActiveScene();
-        SceneManager.LoadScene("UserInterface");
-        SceneManager.UnloadSceneAsync(current.name);
+        MainUI.SetActive(true);
+        Controller_Controls.SetActive(false);
+        System_Instruction.SetActive(false);
     }
 
 	public void PlayGuided()
 	{
         Scene current = SceneManager.GetActiveScene();
-        SceneManager.LoadScene("Guided Scene");
         SceneManager.UnloadSceneAsync(current.name);
+        SceneManager.LoadScene("Guided Scene");
     }
 
 	public void PlayUnGuided()
 	{
         Scene current = SceneManager.GetActiveScene();
-        SceneManager.LoadScene("Unguided Scene");
         SceneManager.UnloadSceneAsync(current.name);
+        SceneManager.LoadScene("Unguided Scene");
     }
 	public void SystemInstruction()
 	{
-        Scene current = SceneManager.GetActiveScene();
-        SceneManager.LoadScene("System Instruction");
-        SceneManager.UnloadSceneAsync(current.name);
+        System_Instruction.SetActive(true);
+        MainUI.SetActive(false);
+        Controller_Controls.SetActive(false);
     }
 	public void ControllerControls()
 	{
-        Scene current = SceneManager.GetActiveScene();
-        SceneManager.LoadScene("Controller Controls");
-        SceneManager.UnloadSceneAsync(current.name);
+        Controller_Controls.SetActive(true);
+        MainUI.SetActive(false);
+        System_Instruction.SetActive(false);
     }
 	public void QuitGame()
 	{

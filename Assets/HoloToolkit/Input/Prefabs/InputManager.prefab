@@ -464,7 +464,7 @@ MonoBehaviour:
   m_SubmitButton: CONTROLLER_RIGHT_MENU
   m_CancelButton: CONTROLLER_RIGHT_STICK_CLICK
   m_InputActionsPerSecond: 1
-  m_RepeatDelay: 1
+  m_RepeatDelay: 0
   m_ForceModuleActive: 0
 --- !u!114 &114512526664342106
 MonoBehaviour:

@@ -1757,7 +1757,7 @@ Prefab:
     - target: {fileID: 114108843371361094, guid: d29bc40b7f3df26479d6a0aac211c355,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114108843371361094, guid: d29bc40b7f3df26479d6a0aac211c355,
         type: 2}
@@ -1767,12 +1767,20 @@ Prefab:
     - target: {fileID: 114108843371361094, guid: d29bc40b7f3df26479d6a0aac211c355,
         type: 2}
       propertyPath: StayOnTheFloor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114108843371361094, guid: d29bc40b7f3df26479d6a0aac211c355,
         type: 2}
       propertyPath: useCustomMapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720227379189900, guid: d29bc40b7f3df26479d6a0aac211c355, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720227379189900, guid: d29bc40b7f3df26479d6a0aac211c355, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5.92
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d29bc40b7f3df26479d6a0aac211c355, type: 2}
