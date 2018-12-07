@@ -10,22 +10,67 @@ namespace DCATS.Assets.Attachable
 {
     public class SimLogic : MonoBehaviour
     {
-        public static SimManager Instance;
+        public bool isGuided;
+        public static ComponentsManager Instance;
+        public  AudioSource audioInstalled;
+        public GameObject CPU_Instructions;
+        public GameObject CPU_Fan_Instructions;
+        public GameObject GPU_Instructions;
+        public GameObject RAM_Instructions;
+        public GameObject Motherboard_Instructions;
+        public GameObject HDD_Instructions;
+        public GameObject PSU_Instructions;
+        public GameObject PSU_Cable_Instructions;
+        public GameObject End_Simulation;
 
         private void Start()
         {
-            Instance = new SimManager();
-        }    
+            Instance = new ComponentsManager(isGuided);
+            audioInstalled = GetComponentInParent<AudioSource>();
+            Debug.Log("This simulation is guided: " + isGuided);
+            Debug.Log("Init " + CPU_Instructions);
+            Debug.Log("Init " + CPU_Fan_Instructions);
+            Debug.Log("Init " + GPU_Instructions);
+            Debug.Log("Init " + RAM_Instructions);
+            Debug.Log("Init " + Motherboard_Instructions);
+            Debug.Log("Init " + HDD_Instructions);
+            Debug.Log("Init " + PSU_Instructions);
+            Debug.Log("Init " + PSU_Cable_Instructions);
+            Debug.Log("Init " + End_Simulation);
+        }
+
+        public void Update()
+        {
+            // check for completion of simulation
+            if(Instance.Components.completed)
+            {
+                endSim();
+            }
+        }
+
+        public void endSim()
+        {
+            // notify user that the simulation is complete
+            // delay
+            // load the main menu scene
+        }
+
+        public void Transition(GameObject previous, GameObject next)
+        {
+            previous.SetActive(false);
+            next.SetActive(true);
+        }
+
+
     }
-    public class SimManager
+    public class ComponentsManager : SimLogic
     {
-        public bool isGuided;
         public ComponentsList Components;
 
-        public SimManager()
+        public ComponentsManager(bool guided)
         {
-            isGuided = false;
             Components = new ComponentsList();
+            isGuided = guided;
         }
 
         public void UpdateComponents(BaseGrabbable obj)
@@ -79,29 +124,29 @@ namespace DCATS.Assets.Attachable
                 case "CPU":
                     Debug.Log("CPU has been installed!");
                     Components.CPU = true;
-
                     if (isGuided)
                     {
-                        // trigger transition in instructions from CPU to CPU Fan installation 
+                        Transition(CPU_Instructions, CPU_Fan_Instructions);
                     }
+                    audioInstalled.Play();
                     break;
                 case "CPU_Fan":
                     Debug.Log("CPU Fan has been installed!");
                     Components.CPU_Fan = true;
-                    // trigger success sound
                     if (isGuided)
                     {
-                        // trigger transition in instructions from CPU Fan to GPU installation
+                        Transition(CPU_Fan_Instructions, GPU_Instructions);
                     }
+                    audioInstalled.Play();
                     break;
                 case "GPU":
                     Debug.Log("GPU has been installed!");
                     Components.GPU = true;
-                    // trigger success sound
                     if (isGuided)
                     {
-                        // trigger transition from GPU to RAM installation
+                        Transition(GPU_Instructions, RAM_Instructions);
                     }
+                    audioInstalled.Play();
                     break;
                 case "RAM1":
                     Debug.Log("RAM1 has been installed!");
@@ -109,9 +154,9 @@ namespace DCATS.Assets.Attachable
                     Components.CheckRam();
                     if (isGuided && Components.allRamInstalled)
                     {
-                        // trigger transition from RAM installation to Motherboard installation
+                        Transition(RAM_Instructions, Motherboard_Instructions);
                     }
-                    // trigger success sound
+                    audioInstalled.Play();
                     break;
                 case "RAM2":
                     Debug.Log("RAM2 has been installed!");
@@ -119,9 +164,9 @@ namespace DCATS.Assets.Attachable
                     Components.CheckRam();
                     if (isGuided && Components.allRamInstalled)
                     {
-                        // trigger transition from RAM installation to Motherboard installation
+                        Transition(RAM_Instructions, Motherboard_Instructions);
                     }
-                    // trigger success sound
+                    audioInstalled.Play();
                     break;
                 case "RAM3":
                     Debug.Log("RAM3 has been installed!");
@@ -129,9 +174,9 @@ namespace DCATS.Assets.Attachable
                     Components.CheckRam();
                     if (isGuided && Components.allRamInstalled)
                     {
-                        // trigger transition from RAM installation to Motherboard installation
+                        Transition(RAM_Instructions, Motherboard_Instructions);
                     }
-                    // trigger success sound
+                    audioInstalled.Play();
                     break;
                 case "RAM4":
                     Debug.Log("RAM4 has been installed!");
@@ -139,41 +184,43 @@ namespace DCATS.Assets.Attachable
                     Components.CheckRam();
                     if (isGuided && Components.allRamInstalled)
                     {
-                        // trigger transition from RAM installation to Motherboard installation
+                        Transition(RAM_Instructions, Motherboard_Instructions);
                     }
-                    // trigger success sound
+                    audioInstalled.Play();
                     break;
                 case "Motherboard":
                     Debug.Log("Motherboard has been installed!");
                     Components.Motherboard = true;
-                    // trigger success sound
                     if (isGuided)
                     {
-                        // trigger transition from Motherboard to HDD installation
+                        Transition(Motherboard_Instructions, HDD_Instructions);
                     }
+                    audioInstalled.Play();
                     break;
                 case "HDD":
                     Debug.Log("Hard Drive has been installed!");
                     Components.HDD = true;
-                    // trigger success sound
                     if (isGuided)
                     {
-                        // trigger transition from HDD to PSU installation
+                        Transition(HDD_Instructions, PSU_Instructions);
                     }
+                    audioInstalled.Play();
                     break;
                 case "PSU":
                     Debug.Log("Power Supply has been installed!");
                     Components.PSU = true;
-                    // trigger success sound
                     if (isGuided)
                     {
-                        // trigger transition from PSU to PSU Cables installation
+                        Transition(PSU_Instructions, PSU_Cable_Instructions);
                     }
+                    audioInstalled.Play();
                     break;
                 case null:
                     Debug.LogWarning("UpdateComponents called with null BaseGrabbable obj!");
                     break;
             }
+            Components.CheckCompletion();
+            Components.CheckRam();
         }
     }
 }
