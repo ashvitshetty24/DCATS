@@ -29,6 +29,7 @@ namespace DCATS.Assets.Attachable
             }
             else
             {
+                SimLogic.Instance.MistakeMade(obj);
                 Debug.LogWarning("[" + name + "] " + "TryGrabWith failed! Grabbable: " + obj.name);
             }
         }

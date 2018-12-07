@@ -18,6 +18,11 @@ public class MainMenu : MonoBehaviour
     }
     public void UserInterface()
 	{
+        Scene current = SceneManager.GetActiveScene();
+        if(current.name != "UserInterface")
+        {
+            SceneManager.LoadScene("UserInterface");
+        }
         MainUI.SetActive(true);
         Controller_Controls.SetActive(false);
         System_Instruction.SetActive(false);
@@ -25,15 +30,17 @@ public class MainMenu : MonoBehaviour
 
 	public void PlayGuided()
 	{
-        Scene current = SceneManager.GetActiveScene();
-        SceneManager.UnloadSceneAsync(current.name);
+        Destroy(GameObject.Find("InputManagerUI"));
+        Destroy(GameObject.Find("MixedRealityCameraParentUI"));
+        SceneManager.UnloadSceneAsync("UserInterface");
         SceneManager.LoadScene("Guided Scene");
     }
 
 	public void PlayUnGuided()
 	{
-        Scene current = SceneManager.GetActiveScene();
-        SceneManager.UnloadSceneAsync(current.name);
+        Destroy(GameObject.Find("InputManagerUI"));
+        Destroy(GameObject.Find("MixedRealityCameraParentUI"));
+        SceneManager.UnloadSceneAsync("UserInterface");
         SceneManager.LoadScene("Unguided Scene");
     }
 	public void SystemInstruction()

@@ -1,4 +1,5 @@
-﻿using HoloToolkit.Unity.InputModule.Examples.Grabbables;
+﻿using HoloToolkit.Unity.InputModule;
+using HoloToolkit.Unity.InputModule.Examples.Grabbables;
 using UnityEngine;
 
 namespace DCATS.Assets.Attachable
@@ -6,9 +7,10 @@ namespace DCATS.Assets.Attachable
     public class SimLogic : MonoBehaviour
     {
         public bool isGuided;
-        public static ComponentsManager Instance;
+        public static SimulationManager Instance;
         public AudioSource audioInstalled;
         public AudioSource audioCompleted;
+        public AudioSource audioMistake;
         public GameObject CPU_Instructions;
         public GameObject CPU_Fan_Instructions;
         public GameObject GPU_Instructions;
@@ -18,22 +20,12 @@ namespace DCATS.Assets.Attachable
         public GameObject PSU_Instructions;
         public GameObject PSU_Cable_Instructions;
         public GameObject End_Simulation;
+        public int Mistakes;
 
-        private void Start()
+        public void Start()
         {
-            Instance = new ComponentsManager(isGuided);
-            audioInstalled = GetComponentInParent<AudioSource>();
-            audioCompleted = GetComponentInParent<AudioSource>();
-            Debug.Log("This simulation is guided: " + isGuided);
-            Debug.Log("Init " + CPU_Instructions);
-            Debug.Log("Init " + CPU_Fan_Instructions);
-            Debug.Log("Init " + GPU_Instructions);
-            Debug.Log("Init " + RAM_Instructions);
-            Debug.Log("Init " + Motherboard_Instructions);
-            Debug.Log("Init " + HDD_Instructions);
-            Debug.Log("Init " + PSU_Instructions);
-            Debug.Log("Init " + PSU_Cable_Instructions);
-            Debug.Log("Init " + End_Simulation);
+            Instance = new SimulationManager(isGuided);
+            Instance.Mistakes = 0;
         }
 
         public void Update()
@@ -41,39 +33,41 @@ namespace DCATS.Assets.Attachable
             // check for completion of simulation
             if(Instance.Components.completed)
             {
-                endSim();
+                Instance.endSim();
             }
+        }
+    }
+    public class SimulationManager : SimLogic
+    {
+        public ComponentsList Components;
+
+        public SimulationManager(bool guided)
+        {
+            Components = new ComponentsList();
+            isGuided = guided;
+        }
+
+        public void MistakeMade(BaseGrabbable obj)
+        {
+            Debug.Log("A mistake was made! Object attempting to be plugged in is " + obj.name);
+            audioMistake.Play();
+            Mistakes++;
         }
 
         public void endSim()
         {
-            if(isGuided)
+            if (isGuided)
             {
-                Transition(PSU_Cable_Instructions, End_Simulation);
+
             }
             else
             {
                 End_Simulation.SetActive(true);
+                audioCompleted.Play();
+                Debug.Log("A total of " + Mistakes + " were made.");
+
             }
-            
-        }
 
-        public void Transition(GameObject previous, GameObject next)
-        {
-            previous.SetActive(false);
-            next.SetActive(true);
-        }
-
-
-    }
-    public class ComponentsManager : SimLogic
-    {
-        public ComponentsList Components;
-
-        public ComponentsManager(bool guided)
-        {
-            Components = new ComponentsList();
-            isGuided = guided;
         }
 
         public void UpdateComponents(BaseGrabbable obj)
@@ -129,7 +123,8 @@ namespace DCATS.Assets.Attachable
                     Components.CPU = true;
                     if (isGuided)
                     {
-                        Transition(CPU_Instructions, CPU_Fan_Instructions);
+                        CPU_Instructions.SetActive(false);
+                        CPU_Fan_Instructions.SetActive(true);
                     }
                     audioInstalled.Play();
                     break;
@@ -138,7 +133,8 @@ namespace DCATS.Assets.Attachable
                     Components.CPU_Fan = true;
                     if (isGuided)
                     {
-                        Transition(CPU_Fan_Instructions, GPU_Instructions);
+                        CPU_Fan_Instructions.SetActive(false);
+                        GPU_Instructions.SetActive(true);
                     }
                     audioInstalled.Play();
                     break;
@@ -147,7 +143,8 @@ namespace DCATS.Assets.Attachable
                     Components.GPU = true;
                     if (isGuided)
                     {
-                        Transition(GPU_Instructions, RAM_Instructions);
+                        GPU_Instructions.SetActive(false);
+                        RAM_Instructions.SetActive(true);
                     }
                     audioInstalled.Play();
                     break;
@@ -157,7 +154,8 @@ namespace DCATS.Assets.Attachable
                     Components.CheckRam();
                     if (isGuided && Components.allRamInstalled)
                     {
-                        Transition(RAM_Instructions, Motherboard_Instructions);
+                        RAM_Instructions.SetActive(false);
+                        Motherboard_Instructions.SetActive(true);
                     }
                     audioInstalled.Play();
                     break;
@@ -167,7 +165,8 @@ namespace DCATS.Assets.Attachable
                     Components.CheckRam();
                     if (isGuided && Components.allRamInstalled)
                     {
-                        Transition(RAM_Instructions, Motherboard_Instructions);
+                        RAM_Instructions.SetActive(false);
+                        Motherboard_Instructions.SetActive(true);
                     }
                     audioInstalled.Play();
                     break;
@@ -177,7 +176,8 @@ namespace DCATS.Assets.Attachable
                     Components.CheckRam();
                     if (isGuided && Components.allRamInstalled)
                     {
-                        Transition(RAM_Instructions, Motherboard_Instructions);
+                        RAM_Instructions.SetActive(false);
+                        Motherboard_Instructions.SetActive(true);
                     }
                     audioInstalled.Play();
                     break;
@@ -187,7 +187,8 @@ namespace DCATS.Assets.Attachable
                     Components.CheckRam();
                     if (isGuided && Components.allRamInstalled)
                     {
-                        Transition(RAM_Instructions, Motherboard_Instructions);
+                        RAM_Instructions.SetActive(false);
+                        Motherboard_Instructions.SetActive(true);
                     }
                     audioInstalled.Play();
                     break;
@@ -196,7 +197,8 @@ namespace DCATS.Assets.Attachable
                     Components.Motherboard = true;
                     if (isGuided)
                     {
-                        Transition(Motherboard_Instructions, HDD_Instructions);
+                        Motherboard_Instructions.SetActive(false);
+                        HDD_Instructions.SetActive(true);
                     }
                     audioInstalled.Play();
                     break;
@@ -205,7 +207,8 @@ namespace DCATS.Assets.Attachable
                     Components.HDD = true;
                     if (isGuided)
                     {
-                        Transition(HDD_Instructions, PSU_Instructions);
+                        HDD_Instructions.SetActive(false);
+                        PSU_Instructions.SetActive(true);
                     }
                     audioInstalled.Play();
                     break;
@@ -214,7 +217,8 @@ namespace DCATS.Assets.Attachable
                     Components.PSU = true;
                     if (isGuided)
                     {
-                        Transition(PSU_Instructions, PSU_Cable_Instructions);
+                        PSU_Instructions.SetActive(false);
+
                     }
                     audioInstalled.Play();
                     break;
